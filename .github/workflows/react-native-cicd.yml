@@ -20,8 +20,6 @@ on:
 
 env:
   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
   NODE_OPTIONS: --openssl-legacy-provider
 
 jobs:
@@ -68,15 +66,6 @@ jobs:
 
       - name: 🎨 Run Prettier check
         run: yarn format:check
-
-      - name: 📢 Notify test results
-        if: always()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK }}
-          SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
-          SLACK_TITLE: Test Results
-          SLACK_MESSAGE: "Tests ${{ job.status == 'success' && 'passed ✅' || 'failed ❌' }}"
 
   build-and-release:
     needs: test
@@ -216,12 +205,3 @@ jobs:
           path: |
             ./app-prod.apk
           retention-days: 7
-
-      - name: 📢 Notify build completion
-        if: always()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK }}
-          SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
-          SLACK_TITLE: Build Results
-          SLACK_MESSAGE: "Build ${{ job.status == 'success' && 'completed successfully ✅' || 'failed ❌' }}"

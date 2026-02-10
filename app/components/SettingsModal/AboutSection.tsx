@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                 <View style={[styles.aboutContainer, { backgroundColor: theme.background }]}>
 
                     <View style={styles.logoContainer}>
-                        <Image source={require('@/assets/images/hd-logo.png')} style={styles.logo} resizeMode="contain" />
+                        <Image source={require('../../../assets/images/hd-logo.png')} style={styles.logo} resizeMode="contain" />
                     </View>
 
                     <Text style={[styles.appName, { color: theme.text }]}>UPI MCC Checker</Text>

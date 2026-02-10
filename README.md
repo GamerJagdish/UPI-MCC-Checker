@@ -67,19 +67,25 @@ Then just scan the QR in your console with Expo Go app or Open in web on localho
 ## Project Structure
 
 ```
-app/
-├── index.tsx              # Main entry point
-├── types/                 # TypeScript type definitions
-├── constants/             # Colors and styles
-├── utils/                 # Helper functions (UPI parser, MCC lookup, QR scanner)
-├── hooks/                 # Custom React hooks (theme, camera)
-└── components/            # Reusable UI components
-    ├── WebCamera.tsx
-    ├── PermissionView.tsx
-    ├── ScannerOverlay.tsx
-    ├── ResultsView.tsx
-    ├── ErrorView.tsx
-    └── SettingsModal/
+UPI-MCC-Checker/
+├── app/
+│   ├── index.tsx              # Main entry point
+│   ├── _layout.tsx            # Root layout
+│   └── +not-found.tsx         # 404 screen
+├── types/                     # TypeScript type definitions
+├── constants/                 # Colors and styles
+├── utils/                     # Helper functions (UPI parser, MCC lookup, QR scanner)
+├── hooks/                     # Custom React hooks (theme, camera)
+├── components/                # Reusable UI components
+│   ├── WebCamera.tsx
+│   ├── PermissionView.tsx
+│   ├── ScannerOverlay.tsx
+│   ├── ResultsView.tsx
+│   ├── ErrorView.tsx
+│   └── SettingsModal/
+├── assets/                    # Images and JSON data
+├── app.json                   # Expo configuration
+└── package.json               # Dependencies and scripts
 ```
 
 ## Contributing

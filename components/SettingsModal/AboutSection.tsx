@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                 <View style={[styles.aboutContainer, { backgroundColor: theme.background }]}>
 
                     <View style={styles.logoContainer}>
-                        <Image source={require('../../../assets/images/hd-logo.png')} style={styles.logo} resizeMode="contain" />
+                        <Image source={require('../../assets/images/hd-logo.png')} style={styles.logo} resizeMode="contain" />
                     </View>
 
                     <Text style={[styles.appName, { color: theme.text }]}>UPI MCC Checker</Text>
@@ -47,6 +47,17 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                             onPress={() => Linking.openURL('https://buymeacoffee.com/gamerjagdish')}>
                             <Coffee size={20} color="#000" />
                             <Text style={[styles.actionButtonTextBlack]}>Buy Me a Coffee</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.actionButton, { backgroundColor: '#2b71f0' }]}
+                            onPress={() => Linking.openURL('upi://pay?pa=gamerjagdish@upi&pn=Jagdish++Sharma&tn=Donation+to+Jagdish')}>
+                            <Image 
+                                source={require('../../assets/images/bhim.png')} 
+                                style={{ width: 20, height: 20, tintColor: '#fff' }} 
+                                resizeMode="contain" 
+                            />
+                            <Text style={styles.actionButtonText}>UPI Donation</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

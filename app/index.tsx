@@ -16,26 +16,26 @@ import { BlurView } from 'expo-blur';
 import { RefreshCw, Settings, Image as ImageIcon } from 'lucide-react-native';
 
 // Types
-import { UPIParams, SettingsView } from './types';
+import { UPIParams, SettingsView } from '../types';
 
 // Constants
-import { styles } from './constants/styles';
+import { styles } from '../constants/styles';
 
 // Hooks
-import { useTheme } from './hooks/useTheme';
-import { useCamera } from './hooks/useCamera';
+import { useTheme } from '../hooks/useTheme';
+import { useCamera } from '../hooks/useCamera';
 
 // Utils
-import { parseUPIUrl } from './utils/upiParser';
-import { scanQRFromImage } from './utils/qrScanner';
+import { parseUPIUrl } from '../utils/upiParser';
+import { scanQRFromImage } from '../utils/qrScanner';
 
 // Components
-import { WebCamera } from './components/WebCamera';
-import { PermissionView } from './components/PermissionView';
-import { ScannerOverlay } from './components/ScannerOverlay';
-import { ResultsView } from './components/ResultsView';
-import { ErrorView } from './components/ErrorView';
-import { SettingsModal } from './components/SettingsModal';
+import { WebCamera } from '../components/WebCamera';
+import { PermissionView } from '../components/PermissionView';
+import { ScannerOverlay } from '../components/ScannerOverlay';
+import { ResultsView } from '../components/ResultsView';
+import { ErrorView } from '../components/ErrorView';
+import { SettingsModal } from '../components/SettingsModal';
 
 export default function Home() {
   const { isDark, theme, toggleTheme } = useTheme();

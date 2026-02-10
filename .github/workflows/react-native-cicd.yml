@@ -58,6 +58,7 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
+          rm -f package-lock.json
           yarn install
           yarn global add eas-cli@latest
 

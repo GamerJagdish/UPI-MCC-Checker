@@ -31,7 +31,7 @@ Remember if you have a specific offer like "Scan and pay" then it's suggested th
 
 ## Contributing
 
-Contributions are welcome. Please check [CONTRIBUTING.md](.github/CONTRIBUTING.md) for technical details and setup instructions.
+Contributions are welcome. Please check [CONTRIBUTING.md](CONTRIBUTING.md) for technical details and setup instructions.
 
 ## Support
 

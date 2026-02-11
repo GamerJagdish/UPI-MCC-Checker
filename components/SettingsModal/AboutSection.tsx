@@ -37,7 +37,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                     <View style={styles.aboutActionButtons}>
                         <TouchableOpacity
                             style={styles.actionButton}
-                            onPress={() => Linking.openURL('https://github.com/GamerJagdish')}>
+                            onPress={() => Linking.openURL('https://github.com/GamerJagdish/UPI-MCC-Checker')}>
                             <Github size={20} color="#fff" />
                             <Text style={styles.actionButtonText}>GitHub</Text>
                         </TouchableOpacity>

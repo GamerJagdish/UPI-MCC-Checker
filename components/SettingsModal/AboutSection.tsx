@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
-import { Github, Coffee } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Image, Linking, Clipboard, ToastAndroid, Platform } from 'react-native';
+import { Github, Coffee, Check } from 'lucide-react-native';
 import Constants from 'expo-constants';
 import * as Application from 'expo-application';
 import { ThemeColors } from '../../types';
@@ -11,10 +11,23 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
+    const [upiCopied, setUpiCopied] = useState(false);
     const displayVersion = 
         Application.nativeApplicationVersion ?? 
         Constants.expoConfig?.version ?? 
-        '1.2.1';
+        '1.2.2';
+
+    const handleUPICopy = () => {
+        const upiId = 'gamerjagdish@upi';
+        Clipboard.setString(upiId);
+        setUpiCopied(true);
+        
+        if (Platform.OS === 'android') {
+            ToastAndroid.show('UPI ID copied to clipboard', ToastAndroid.SHORT);
+        }
+        
+        setTimeout(() => setUpiCopied(false), 2000);
+    };
 
     return (
         <ScrollView style={styles.settingsScrollView}>
@@ -58,13 +71,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
 
                         <TouchableOpacity
                             style={[styles.actionButton, { backgroundColor: '#2b71f0' }]}
-                            onPress={() => Linking.openURL('upi://pay?pa=gamerjagdish@upi&pn=Jagdish++Sharma&tn=Donation+to+Jagdish')}>
-                            <Image 
-                                source={require('../../assets/images/bhim.png')} 
-                                style={{ width: 20, height: 20, tintColor: '#fff' }} 
-                                resizeMode="contain" 
-                            />
-                            <Text style={styles.actionButtonText}>UPI Donation</Text>
+                            onPress={handleUPICopy}>
+                            {upiCopied ? (
+                                <Check size={20} color="#fff" />
+                            ) : (
+                                <Image 
+                                    source={require('../../assets/images/bhim.png')} 
+                                    style={{ width: 20, height: 20, tintColor: '#fff' }} 
+                                    resizeMode="contain" 
+                                />
+                            )}
+                            <Text style={styles.actionButtonText}>
+                                {upiCopied ? 'Copied!' : 'UPI Donation'}
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>

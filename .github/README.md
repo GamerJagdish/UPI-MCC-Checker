@@ -1,6 +1,13 @@
 # UPI MCC Checker
 
 A cross-platform mobile application for scanning and analyzing UPI QR codes. The Idea came to me when I realised some QR codes do have MCC in them and if I just check it beforehand I will have an idea if I should pay with my credit card or my bank account to avoid those 1% surcharge on some mcc and to make sure I'm using the right card for that merchant.
+<p align="center">
+  <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest/"><img alt="Downloads" src="https://img.shields.io/github/downloads/GamerJagdish/UPI-MCC-Checker/total?style=flat-square"></a>
+  <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest/"><img alt="Latest Release" src="https://img.shields.io/github/v/release/GamerJagdish/UPI-MCC-Checker?display_name=release&style=flat-square"></a>
+  <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/commits"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
+  <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
+  <a href="../LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/github/license/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
+</p>
 
 ## Features
 
@@ -35,5 +42,5 @@ Contributions are welcome. Please check [CONTRIBUTING.md](CONTRIBUTING.md) for t
 
 ## Support
 
-If you find this project useful, consider supporting the developer:
-- [Buy Me a Coffee](https://buymeacoffee.com/gamerjagdish)
+If you find this project useful, consider supporting the developer: <br/><br/>
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/gamerjagdish)

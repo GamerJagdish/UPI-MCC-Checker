@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
 import { Github, Coffee } from 'lucide-react-native';
+import Constants from 'expo-constants';
+import * as Application from 'expo-application';
 import { ThemeColors } from '../../types';
 import { styles } from '../../constants/styles';
 
@@ -9,6 +11,11 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
+    const displayVersion = 
+        Application.nativeApplicationVersion ?? 
+        Constants.expoConfig?.version ?? 
+        '1.2.1';
+
     return (
         <ScrollView style={styles.settingsScrollView}>
             <View style={styles.settingsSection}>
@@ -21,7 +28,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                     <Text style={[styles.appName, { color: theme.text }]}>UPI MCC Checker</Text>
 
                     <View style={[styles.versionPill, { backgroundColor: theme.iconBg }]}>
-                        <Text style={[styles.versionText, { color: theme.textSecondary }]}>v1.0.0</Text>
+                        <Text style={[styles.versionText, { color: theme.textSecondary }]}>v{displayVersion}</Text>
                     </View>
 
                     <Text style={[styles.appDescription, { color: theme.textSecondary, textAlign: 'center' }]}>

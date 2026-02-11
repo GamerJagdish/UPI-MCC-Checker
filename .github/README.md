@@ -25,72 +25,13 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
 5. Hit go to then launch your UPI app.
 Remember if you have a specific offer like "Scan and pay" then it's suggested that you use the main app itself. a good example will be kiwi app ig that thing may only give you 0.5% instead of 1.5% if you redirect from UPI MCC Checker app to their app. so in such cases only use the app to check the mcc and then go to the main app to pay.
 
-## Tech Stack
+## Download
 
-- React Native with Expo
-- TypeScript
-- Expo Camera for QR scanning
-- jsQR for web-based scanning
-- AsyncStorage for local persistence
-
-## Prerequisites
-
-- Node.js (v16 or higher)
-- npm
-- Expo CLI
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/GamerJagdish/UPI-MCC-Checker.git
-cd UPI-MCC-Checker
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-## Running the App
-
-### Development Server
-
-Start the Expo development server:
-```bash
-npx expo start
-```
-
-Then just scan the QR in your console with Expo Go app or Open in web on localhost:8081
-
-
-## Project Structure
-
-```
-UPI-MCC-Checker/
-├── app/
-│   ├── index.tsx              # Main entry point
-│   ├── _layout.tsx            # Root layout
-│   └── +not-found.tsx         # 404 screen
-├── types/                     # TypeScript type definitions
-├── constants/                 # Colors and styles
-├── utils/                     # Helper functions (UPI parser, MCC lookup, QR scanner)
-├── hooks/                     # Custom React hooks (theme, camera)
-├── components/                # Reusable UI components
-│   ├── WebCamera.tsx
-│   ├── PermissionView.tsx
-│   ├── ScannerOverlay.tsx
-│   ├── ResultsView.tsx
-│   ├── ErrorView.tsx
-│   └── SettingsModal/
-├── assets/                    # Images and JSON data
-├── app.json                   # Expo configuration
-└── package.json               # Dependencies and scripts
-```
+[Download Latest Release](https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest)
 
 ## Contributing
 
-Contributions are welcome. Please feel free to submit a Pull Request.
+Contributions are welcome. Please check [CONTRIBUTING.md](.github/CONTRIBUTING.md) for technical details and setup instructions.
 
 ## Support
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Switch, Platform } from 'react-native';
-import { ArrowRight, Camera, Moon, Info } from 'lucide-react-native';
+import { ArrowRight, Camera, Moon, Info, Zap } from 'lucide-react-native';
 import { ThemeColors } from '../../types';
 import { styles } from '../../constants/styles';
 
@@ -8,6 +8,8 @@ interface SettingsMenuProps {
     theme: ThemeColors;
     isDark: boolean;
     onToggleTheme: (value: boolean) => void;
+    hapticsEnabled: boolean;
+    onToggleHaptics: (value: boolean) => void;
     onNavigateTo: (view: 'camera' | 'about') => void;
 }
 
@@ -15,6 +17,8 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
     theme,
     isDark,
     onToggleTheme,
+    hapticsEnabled,
+    onToggleHaptics,
     onNavigateTo,
 }) => {
     return (
@@ -48,6 +52,23 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
                     ios_backgroundColor="#cbd5e1"
                     onValueChange={onToggleTheme}
                     value={isDark}
+                />
+            </View>
+
+            <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
+                <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
+                    <Zap size={24} color="#3b82f6" />
+                </View>
+                <View style={styles.menuItemContent}>
+                    <Text style={[styles.menuItemTitle, { color: theme.text }]}>Haptics</Text>
+                    <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Vibrate on successful scan</Text>
+                </View>
+                <Switch
+                    trackColor={{ false: '#cbd5e1', true: '#3b82f6' }}
+                    thumbColor={Platform.OS === 'ios' ? '#fff' : hapticsEnabled ? '#fff' : '#f4f3f4'}
+                    ios_backgroundColor="#cbd5e1"
+                    onValueChange={onToggleHaptics}
+                    value={hapticsEnabled}
                 />
             </View>
 

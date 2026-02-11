@@ -24,6 +24,7 @@ import { styles } from '../constants/styles';
 // Hooks
 import { useTheme } from '../hooks/useTheme';
 import { useCamera } from '../hooks/useCamera';
+import { useHaptics } from '../hooks/useHaptics';
 
 // Utils
 import { parseUPIUrl } from '../utils/upiParser';
@@ -39,6 +40,7 @@ import { SettingsModal } from '../components/SettingsModal';
 
 export default function Home() {
   const { isDark, theme, toggleTheme } = useTheme();
+  const { hapticsEnabled, toggleHaptics, triggerSuccessHaptic } = useHaptics();
   const {
     permission,
     requestPermission,
@@ -59,6 +61,9 @@ export default function Home() {
 
   const handleBarCodeScanned = ({ data }: { data: string }) => {
     setScanned(true);
+    // Trigger haptic feedback on successful scan
+    triggerSuccessHaptic();
+    
     setRawUrl(data);
     const parsed = parseUPIUrl(data);
     setUpiData(parsed);
@@ -180,6 +185,8 @@ export default function Home() {
           onClose={handleSettingsClose}
           onNavigateTo={setSettingsView}
           onToggleTheme={toggleTheme}
+          hapticsEnabled={hapticsEnabled}
+          onToggleHaptics={toggleHaptics}
           onCameraSelect={handleCameraSelectionWrapper}
         />
       </View>
@@ -207,6 +214,8 @@ export default function Home() {
           onClose={handleSettingsClose}
           onNavigateTo={setSettingsView}
           onToggleTheme={toggleTheme}
+          hapticsEnabled={hapticsEnabled}
+          onToggleHaptics={toggleHaptics}
           onCameraSelect={handleCameraSelectionWrapper}
         />
       </View>
@@ -237,6 +246,8 @@ export default function Home() {
           onClose={handleSettingsClose}
           onNavigateTo={setSettingsView}
           onToggleTheme={toggleTheme}
+          hapticsEnabled={hapticsEnabled}
+          onToggleHaptics={toggleHaptics}
           onCameraSelect={handleCameraSelectionWrapper}
         />
       </View>
@@ -276,6 +287,8 @@ export default function Home() {
           onClose={handleSettingsClose}
           onNavigateTo={setSettingsView}
           onToggleTheme={toggleTheme}
+          hapticsEnabled={hapticsEnabled}
+          onToggleHaptics={toggleHaptics}
           onCameraSelect={handleCameraSelectionWrapper}
         />
       </View>
@@ -340,6 +353,8 @@ export default function Home() {
         onClose={handleSettingsClose}
         onNavigateTo={setSettingsView}
         onToggleTheme={toggleTheme}
+        hapticsEnabled={hapticsEnabled}
+        onToggleHaptics={toggleHaptics}
         onCameraSelect={handleCameraSelectionWrapper}
       />
     </View>

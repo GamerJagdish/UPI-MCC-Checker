@@ -17,6 +17,8 @@ interface SettingsModalProps {
     onClose: () => void;
     onNavigateTo: (view: SettingsView) => void;
     onToggleTheme: (value: boolean) => void;
+    hapticsEnabled: boolean;
+    onToggleHaptics: (value: boolean) => void;
     onCameraSelect: (cameraId: string) => void;
 }
 
@@ -30,6 +32,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     onClose,
     onNavigateTo,
     onToggleTheme,
+    hapticsEnabled,
+    onToggleHaptics,
     onCameraSelect,
 }) => {
     return (
@@ -65,6 +69,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                             theme={theme}
                             isDark={isDark}
                             onToggleTheme={onToggleTheme}
+                            hapticsEnabled={hapticsEnabled}
+                            onToggleHaptics={onToggleHaptics}
                             onNavigateTo={onNavigateTo}
                         />
                     )}

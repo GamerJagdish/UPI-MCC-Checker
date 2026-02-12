@@ -3,14 +3,6 @@ permissions:
   contents: write
 
 on:
-  push:
-    branches: [main, master]
-    paths-ignore:
-      - "**.md"
-      - "LICENSE"
-      - "docs/**"
-  pull_request:
-    branches: [main, master]
   workflow_dispatch:
     inputs:
       buildType:
@@ -34,7 +26,7 @@ jobs:
 
   build-and-release:
     needs: check-skip
-    if: (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')) || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Checkout repository
@@ -140,7 +132,7 @@ jobs:
           fi
 
       - name: 📱 Build Production APK
-        if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'prod-apk' || github.event_name == 'push'
+        if: github.event_name == 'workflow_dispatch'
         run: |
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
           eas build --platform android --profile production-apk --local --non-interactive --output=./${{ steps.build-info.outputs.apk_name }}

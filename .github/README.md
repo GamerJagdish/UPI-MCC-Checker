@@ -65,7 +65,9 @@ If you find this project useful, consider supporting the developer: <br/><br/>
 
 ## Donations
 
-<!--START_SECTION:buy-me-a-coffee-->
-<!--END_SECTION:buy-me-a-coffee-->
+
 
 </div>
+
+<!--START_SECTION:buy-me-a-coffee-->
+<!--END_SECTION:buy-me-a-coffe-->

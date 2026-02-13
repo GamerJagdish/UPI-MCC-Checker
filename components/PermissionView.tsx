@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Camera as CameraIcon } from 'lucide-react-native';
+import { Camera as CameraIcon, ExternalLink } from 'lucide-react-native';
 import { styles } from '../constants/styles';
 
 interface PermissionViewProps {
@@ -9,6 +9,10 @@ interface PermissionViewProps {
 }
 
 export const PermissionView: React.FC<PermissionViewProps> = ({ onRequestPermission }) => {
+    const handleLearnMore = () => {
+        Linking.openURL('https://github.com/GamerJagdish/UPI-MCC-Checker/blob/master/.github%2FREADME.md#how-it-works');
+    };
+
     return (
         <LinearGradient
             colors={['#1e3a8a', '#3b82f6']}
@@ -18,11 +22,26 @@ export const PermissionView: React.FC<PermissionViewProps> = ({ onRequestPermiss
             <Text style={styles.permissionMessage}>
                 We need your permission to scan QR codes
             </Text>
-            <TouchableOpacity
-                style={styles.permissionButton}
-                onPress={onRequestPermission}>
-                <Text style={styles.permissionButtonText}>Grant Permission</Text>
-            </TouchableOpacity>
+            
+            <View style={{ gap: 12, alignItems: 'center' }}>
+                <TouchableOpacity
+                    style={styles.permissionButton}
+                    onPress={onRequestPermission}>
+                    <Text style={styles.permissionButtonText}>Grant Permission</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{ 
+                        flexDirection: 'row', 
+                        alignItems: 'center', 
+                        padding: 12,
+                        gap: 6 
+                    }}
+                    onPress={handleLearnMore}>
+                    <Text style={{ color: '#fff', fontSize: 14, fontWeight: '500' }}>Learn More</Text>
+                    <ExternalLink size={14} color="#fff" />
+                </TouchableOpacity>
+            </View>
         </LinearGradient>
     );
 };

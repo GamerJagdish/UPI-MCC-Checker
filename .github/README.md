@@ -69,5 +69,4 @@ If you find this project useful, consider supporting the developer: <br/><br/>
 
 </div>
 
-<!--START_SECTION:buy-me-a-coffee-->
-<!--END_SECTION:buy-me-a-coffe-->
+<!--START_SECTION:buy-me-a-coffee--><div><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"> from <b>@Darksome404</b> </div>  <div><i>Something nice</i></div><br><!--END_SECTION:buy-me-a-coffe-->

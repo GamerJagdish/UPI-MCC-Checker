@@ -60,7 +60,7 @@ Contributions are welcome. Please check [CONTRIBUTING.md](CONTRIBUTING.md) for t
 If you find this project useful, consider supporting the developer: <br/><br/>
 <a href="https://www.buymeacoffee.com/gamerjagdish" target="_blank" title="buymeacoffee">
   <img src="https://iili.io/JoQ1MeS.md.png"  alt="buymeacoffee-yellow-badge" style="width: 204px;"></a><br/>
-  <a href="https://www.buymeacoffee.com/gamerjagdish" target="_blank" title="ko-fi">
+  <a href="https://www.ko-fi.com/gamerjagdish" target="_blank" title="ko-fi">
   <img src="https://iili.io/qHFVi5Q.md.png"  alt="ko-fi-badge" style="width: 304px;"></a>
 
 </div>

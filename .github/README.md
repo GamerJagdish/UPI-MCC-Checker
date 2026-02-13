@@ -63,4 +63,9 @@ If you find this project useful, consider supporting the developer: <br/><br/>
   <a href="https://www.ko-fi.com/gamerjagdish" target="_blank" title="ko-fi">
   <img src="https://iili.io/qHFVi5Q.md.png"  alt="ko-fi-badge" style="width: 304px;"></a>
 
+## Donations
+
+<!--START_SECTION:buy-me-a-coffee-->
+<!--END_SECTION:buy-me-a-coffee-->
+
 </div>

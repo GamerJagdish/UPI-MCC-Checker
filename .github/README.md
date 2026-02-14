@@ -42,7 +42,7 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
    - Transaction details (amount, reference ID, notes)
    - Organization ID and UPI version
 5. Hit go to then launch your UPI app.
-Remember if you have a specific offer like "Scan and pay" then it's suggested that you use the main app itself. a good example will be kiwi app ig that thing may only give you 0.5% instead of 1.5% if you redirect from UPI MCC Checker app to their app. so in such cases only use the app to check the mcc and then go to the main app to pay.
+Remember if you have a specific offer like "Scan and pay" then it's suggested that you use the main app itself. a good example will be kiwi app, that thing may only give you 0.5% instead of 1.5% if you redirect from UPI MCC Checker app to their app. so in such cases only use the app to check the mcc and then go to the main app to pay.
 
 </div>
 

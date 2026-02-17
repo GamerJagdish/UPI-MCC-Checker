@@ -22,6 +22,9 @@ export const PermissionView: React.FC<PermissionViewProps> = ({ onRequestPermiss
             <Text style={styles.permissionMessage}>
                 We need your permission to scan QR codes
             </Text>
+            <Text style={[styles.permissionMessage, { marginTop: 8 }]}>
+                We only use the camera locally to scan QR codes. No images leave your device.
+            </Text>
             
             <View style={{ gap: 12, alignItems: 'center' }}>
                 <TouchableOpacity

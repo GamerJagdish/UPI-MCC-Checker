@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
     const displayVersion = 
         Application.nativeApplicationVersion ?? 
         Constants.expoConfig?.version ?? 
-        '1.2.5';
+        '1.2.6';
 
     const handleUPICopy = () => {
         const upiId = 'gamerjagdish@upi';

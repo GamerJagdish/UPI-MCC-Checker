@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { BlurView } from 'expo-blur';
+import React, { useRef } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { BlurView, BlurTargetView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { RefreshCw, ArrowRight, Settings } from 'lucide-react-native';
 import { UPIParams, ThemeColors } from '../types';
@@ -22,9 +22,75 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
     onPayment,
     onSettingsPress,
 }) => {
+    const blurTargetRef = useRef<View>(null);
+
     return (
-        <>
-            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
+        <View style={[styles.container, { backgroundColor: theme.background }]}>
+            <BlurTargetView ref={blurTargetRef} style={{ flex: 1 }}>
+                <ScrollView style={styles.resultsContainer}>
+                    <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
+                        {upiData.pn && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Name</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pn}</Text>
+                            </View>
+                        )}
+
+                        {upiData.pa && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant VPA</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pa}</Text>
+                            </View>
+                        )}
+
+                        {upiData.mc && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Code (MCC)</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{getMCCDescription(upiData.mc)}</Text>
+                            </View>
+                        )}
+
+                        {upiData.am && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Amount</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>
+                                    {upiData.cu || 'INR'} {upiData.am}
+                                </Text>
+                            </View>
+                        )}
+
+                        {upiData.tr && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Ref ID</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tr}</Text>
+                            </View>
+                        )}
+
+                        {upiData.tn && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Note</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tn}</Text>
+                            </View>
+                        )}
+
+                        {upiData.orgid && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Organization ID</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.orgid}</Text>
+                            </View>
+                        )}
+
+                        {upiData.ver && (
+                            <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
+                                <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Version</Text>
+                                <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.ver}</Text>
+                            </View>
+                        )}
+                    </View>
+                </ScrollView>
+            </BlurTargetView>
+
+            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer} blurTarget={blurTargetRef} blurMethod="dimezisBlurViewSdk31Plus">
                 <LinearGradient
                     colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']}
                     style={styles.header}>
@@ -37,68 +103,6 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                     </TouchableOpacity>
                 </LinearGradient>
             </BlurView>
-
-            <ScrollView style={styles.resultsContainer}>
-                <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
-                    {upiData.pn && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Name</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pn}</Text>
-                        </View>
-                    )}
-
-                    {upiData.pa && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant VPA</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pa}</Text>
-                        </View>
-                    )}
-
-                    {upiData.mc && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Code (MCC)</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{getMCCDescription(upiData.mc)}</Text>
-                        </View>
-                    )}
-
-                    {upiData.am && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Amount</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>
-                                {upiData.cu || 'INR'} {upiData.am}
-                            </Text>
-                        </View>
-                    )}
-
-                    {upiData.tr && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Ref ID</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tr}</Text>
-                        </View>
-                    )}
-
-                    {upiData.tn && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Note</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tn}</Text>
-                        </View>
-                    )}
-
-                    {upiData.orgid && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Organization ID</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.orgid}</Text>
-                        </View>
-                    )}
-
-                    {upiData.ver && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Version</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.ver}</Text>
-                        </View>
-                    )}
-                </View>
-            </ScrollView>
 
             <View style={styles.actionButtons}>
                 <TouchableOpacity
@@ -113,6 +117,6 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                     <ArrowRight size={20} color="#fff" />
                 </TouchableOpacity>
             </View>
-        </>
+        </View>
     );
 };

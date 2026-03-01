@@ -8,7 +8,6 @@
     "icon": "./assets/images/icon.png",
     "scheme": "upimccchecker",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
@@ -35,7 +34,8 @@
           "image": "./assets/images/adaptive-icon.png",
           "imageWidth": 200
         }
-      ]
+      ],
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true

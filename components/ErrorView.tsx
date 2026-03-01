@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Share } from 'react-native';
-import { BlurView } from 'expo-blur';
+import React, { useRef } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Share, StyleSheet } from 'react-native';
+import { BlurView, BlurTargetView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { RefreshCw, Copy, AlertCircle, Settings } from 'lucide-react-native';
 import { ThemeColors } from '../types';
@@ -25,6 +25,8 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
     onCopy,
     onSettingsPress,
 }) => {
+    const blurTargetRef = useRef<View>(null);
+
     const handleCopy = async () => {
         if (!rawUrl || !onCopy) return;
         try {
@@ -39,8 +41,33 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
     };
 
     return (
-        <>
-            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
+        <View style={[styles.container, { backgroundColor: theme.background }]}>
+            <BlurTargetView ref={blurTargetRef} style={{ flex: 1 }}>
+                <ScrollView style={styles.resultsContainer}>
+                    <View style={[styles.errorCard, { backgroundColor: theme.card }]}>
+                        <View style={styles.errorIconContainer}>
+                            <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#dc2626'} />
+                        </View>
+                        <Text style={[styles.errorCardTitle, { color: theme.text }]}>
+                            {type === 'no-qr' ? 'No QR Code Found' : 'Not a UPI QR Code'}
+                        </Text>
+                        <Text style={[styles.errorCardMessage, { color: theme.textSecondary }]}>
+                            {type === 'no-qr'
+                                ? 'No QR code was detected in the selected image.'
+                                : "The scanned QR code doesn't appear to be a valid UPI payment code."}
+                        </Text>
+
+                        {type === 'invalid-upi' && rawUrl && (
+                            <View style={[styles.contentBox, { backgroundColor: theme.card }]}>
+                                <Text style={[styles.contentLabel, { color: theme.textSecondary }]}>Scanned Content:</Text>
+                                <Text style={[styles.contentValue, { color: theme.text }]}>{rawUrl}</Text>
+                            </View>
+                        )}
+                    </View>
+                </ScrollView>
+            </BlurTargetView>
+
+            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer} blurTarget={blurTargetRef} blurMethod="dimezisBlurViewSdk31Plus">
                 <LinearGradient
                     colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']}
                     style={styles.header}>
@@ -55,29 +82,6 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                     </TouchableOpacity>
                 </LinearGradient>
             </BlurView>
-
-            <ScrollView style={styles.resultsContainer}>
-                <View style={[styles.errorCard, { backgroundColor: theme.card }]}>
-                    <View style={styles.errorIconContainer}>
-                        <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#dc2626'} />
-                    </View>
-                    <Text style={[styles.errorCardTitle, { color: theme.text }]}>
-                        {type === 'no-qr' ? 'No QR Code Found' : 'Not a UPI QR Code'}
-                    </Text>
-                    <Text style={[styles.errorCardMessage, { color: theme.textSecondary }]}>
-                        {type === 'no-qr'
-                            ? 'No QR code was detected in the selected image.'
-                            : "The scanned QR code doesn't appear to be a valid UPI payment code."}
-                    </Text>
-
-                    {type === 'invalid-upi' && rawUrl && (
-                        <View style={[styles.contentBox, { backgroundColor: theme.card }]}>
-                            <Text style={[styles.contentLabel, { color: theme.textSecondary }]}>Scanned Content:</Text>
-                            <Text style={[styles.contentValue, { color: theme.text }]}>{rawUrl}</Text>
-                        </View>
-                    )}
-                </View>
-            </ScrollView>
 
             <View style={styles.errorActionButtons}>
                 {type === 'invalid-upi' && rawUrl && (
@@ -100,6 +104,6 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                     </Text>
                 </TouchableOpacity>
             </View>
-        </>
+        </View>
     );
 };

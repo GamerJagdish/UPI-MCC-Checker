@@ -7,12 +7,13 @@ import {
   Platform,
   TouchableOpacity,
   Image,
+  StyleSheet,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { CameraView } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BlurView } from 'expo-blur';
+import { BlurView, BlurTargetView } from 'expo-blur';
 import { RefreshCw, Settings, Image as ImageIcon } from 'lucide-react-native';
 
 // Types
@@ -58,6 +59,8 @@ export default function Home() {
   const [noQRFound, setNoQRFound] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [settingsView, setSettingsView] = useState<SettingsView>('menu');
+
+  const blurTargetRef = React.useRef<View>(null);
 
   const handleBarCodeScanned = ({ data }: { data: string }) => {
     setScanned(true);
@@ -299,27 +302,31 @@ export default function Home() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
-      {Platform.OS === 'web' ? (
-        <View style={styles.camera}>
-          <WebCamera
-            selectedCameraId={selectedCameraId}
-            scanned={scanned}
-            onBarCodeScanned={handleBarCodeScanned}
+      
+      <BlurTargetView ref={blurTargetRef} style={StyleSheet.absoluteFill}>
+        {Platform.OS === 'web' ? (
+          <View style={styles.camera}>
+            <WebCamera
+              selectedCameraId={selectedCameraId}
+              scanned={scanned}
+              onBarCodeScanned={handleBarCodeScanned}
+            />
+          </View>
+        ) : (
+          <CameraView
+            key={cameraKey}
+            style={styles.camera}
+            barcodeScannerSettings={{
+              barcodeTypes: ['qr'],
+            }}
+            facing="back"
+            onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
           />
-        </View>
-      ) : (
-        <CameraView
-          key={cameraKey}
-          style={styles.camera}
-          barcodeScannerSettings={{
-            barcodeTypes: ['qr'],
-          }}
-          facing="back"
-          onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
-        />
-      )}
+        )}
+        <ScannerOverlay />
+      </BlurTargetView>
 
-      <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
+      <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer} blurTarget={blurTargetRef} blurMethod="dimezisBlurViewSdk31Plus">
         <LinearGradient colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']} style={styles.header}>
           <Text style={styles.headerTitle}>UPI MCC Checker</Text>
           <Text style={styles.headerSubtitle}>Scan UPI QR Code</Text>
@@ -331,9 +338,7 @@ export default function Home() {
         </LinearGradient>
       </BlurView>
 
-      <ScannerOverlay />
-
-      <BlurView intensity={80} tint="dark" style={styles.blurWrapper}>
+      <BlurView intensity={80} tint="dark" style={styles.blurWrapper} blurTarget={blurTargetRef} blurMethod="dimezisBlurViewSdk31Plus">
         <TouchableOpacity
           style={styles.floatingSelectButton}
           onPress={handleSelectPhoto}

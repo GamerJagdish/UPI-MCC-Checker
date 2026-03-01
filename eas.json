@@ -17,6 +17,9 @@
       },
       "android": {
         "buildType": "apk"
+      },
+      "env":{
+        "ANDROID_HOME": "path to android_sdk here"
       }
     },
     "production-apk": {

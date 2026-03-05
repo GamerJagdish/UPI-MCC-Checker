@@ -35,7 +35,17 @@
           "imageWidth": 200
         }
       ],
-      "expo-image"
+      "expo-image",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "extraProguardRules": "-keep class com.gamerjagdish.UPIMCCChecker.** { *; }"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

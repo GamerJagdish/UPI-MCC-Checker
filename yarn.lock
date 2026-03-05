@@ -3560,6 +3560,15 @@ expo-blur@~55.0.8:
   resolved "https://registry.yarnpkg.com/expo-blur/-/expo-blur-55.0.8.tgz#809eb3b155b542697bbb47bf52972609ddd0f3dc"
   integrity sha512-hmYhQiYFMTpHNzFaCF63jTABgnsozB5+wSEV8rCNBfNEHTdRVNFPkF+TZpbIqJpkhHfGLsKptRmR/wyZmAqREA==
 
+expo-build-properties@~55.0.9:
+  version "55.0.9"
+  resolved "https://registry.yarnpkg.com/expo-build-properties/-/expo-build-properties-55.0.9.tgz#fd80d1c4e21b198e775ed8fb9b64a85cae7c2034"
+  integrity sha512-p0rNHW/6ghKsvjlUn2DQfbLYuTB6ba+15SeTPOz5BYbyU1F/0F/YyxBtHdmWitqgDPn6VgXQeKhiNC1fMwYDpg==
+  dependencies:
+    "@expo/schema-utils" "^55.0.2"
+    resolve-from "^5.0.0"
+    semver "^7.6.0"
+
 expo-camera@~55.0.9:
   version "55.0.9"
   resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-55.0.9.tgz#d64d8d88db5693c61321afd89d2b22cdb17e6e3b"

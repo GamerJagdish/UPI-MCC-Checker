@@ -42,7 +42,7 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
         <>
             <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
                 <LinearGradient
-                    colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']}
+                    colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
                     style={styles.header}>
                     <Text style={styles.headerTitle}>UPI MCC Checker</Text>
                     <Text style={styles.headerSubtitle}>
@@ -94,8 +94,8 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                 <TouchableOpacity
                     style={[styles.scanAgainButtonError, { backgroundColor: theme.card }]}
                     onPress={onScanAgain}>
-                    <RefreshCw size={20} color="#3b82f6" />
-                    <Text style={styles.scanAgainButtonTextError}>
+                    <RefreshCw size={20} color="#ffffff" />
+                    <Text style={[styles.scanAgainButtonTextError, { color: '#ffffff' }]}>
                         {type === 'no-qr' ? 'Try Again' : 'Scan Again'}
                     </Text>
                 </TouchableOpacity>

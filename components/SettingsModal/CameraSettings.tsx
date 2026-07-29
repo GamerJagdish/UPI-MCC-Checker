@@ -19,6 +19,10 @@ export const CameraSettings: React.FC<CameraSettingsProps> = ({
     selectedCameraId,
     onCameraSelect,
 }) => {
+    const selectedIconColor = isDark ? '#ffffff' : '#18181b';
+    const selectedBorderColor = isDark ? '#52525b' : '#18181b';
+    const selectedIndicatorColor = isDark ? '#ffffff' : '#18181b';
+
     return (
         <ScrollView style={styles.settingsScrollView}>
             <View style={styles.settingsSection}>
@@ -32,26 +36,26 @@ export const CameraSettings: React.FC<CameraSettingsProps> = ({
                             key={camera.deviceId}
                             style={[
                                 styles.cameraOption,
-                                { backgroundColor: theme.background, borderColor: selectedCameraId === camera.deviceId ? '#3b82f6' : 'transparent' },
-                                selectedCameraId === camera.deviceId && { backgroundColor: isDark ? '#1e3a8a' : '#eff6ff' },
+                                { backgroundColor: theme.background, borderColor: selectedCameraId === camera.deviceId ? selectedBorderColor : 'transparent' },
+                                selectedCameraId === camera.deviceId && { backgroundColor: isDark ? '#27272a' : '#f1f5f9' },
                             ]}
                             onPress={() => onCameraSelect(camera.deviceId)}>
                             <View style={styles.cameraOptionContent}>
                                 <Camera
                                     size={20}
-                                    color={selectedCameraId === camera.deviceId ? '#3b82f6' : theme.textSecondary}
+                                    color={selectedCameraId === camera.deviceId ? selectedIconColor : theme.textSecondary}
                                 />
                                 <Text
                                     style={[
                                         styles.cameraOptionText,
                                         { color: theme.textSecondary },
-                                        selectedCameraId === camera.deviceId && styles.cameraOptionTextSelected,
+                                        selectedCameraId === camera.deviceId && { color: selectedIconColor, fontWeight: '600' },
                                     ]}>
                                     {camera.label || `Camera ${index + 1}`}
                                 </Text>
                             </View>
                             {selectedCameraId === camera.deviceId && (
-                                <View style={styles.selectedIndicator} />
+                                <View style={[styles.selectedIndicator, { backgroundColor: selectedIndicatorColor }]} />
                             )}
                         </TouchableOpacity>
                     ))}

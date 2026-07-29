@@ -272,8 +272,8 @@ export default function Home() {
           <TouchableOpacity
             style={[styles.scanAgainButtonError, { backgroundColor: theme.card }]}
             onPress={handleScanAgain}>
-            <RefreshCw size={20} color="#3b82f6" />
-            <Text style={styles.scanAgainButtonTextError}>Back</Text>
+            <RefreshCw size={20} color="#ffffff" />
+            <Text style={[styles.scanAgainButtonTextError, { color: '#ffffff' }]}>Back</Text>
           </TouchableOpacity>
         </View>
 
@@ -320,7 +320,7 @@ export default function Home() {
       )}
 
       <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
-        <LinearGradient colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']} style={styles.header}>
+        <LinearGradient colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']} style={styles.header}>
           <Text style={styles.headerTitle}>UPI MCC Checker</Text>
           <Text style={styles.headerSubtitle}>Scan UPI QR Code</Text>
           <TouchableOpacity

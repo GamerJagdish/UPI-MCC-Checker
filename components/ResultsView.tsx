@@ -26,7 +26,7 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
         <>
             <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
                 <LinearGradient
-                    colors={['rgba(30, 58, 138, 0.8)', 'rgba(59, 130, 246, 0.8)']}
+                    colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
                     style={styles.header}>
                     <Text style={styles.headerTitle}>UPI MCC Checker</Text>
                     <Text style={styles.headerSubtitle}>Payment Details</Text>
@@ -102,15 +102,15 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
 
             <View style={styles.actionButtons}>
                 <TouchableOpacity
-                    style={[styles.scanAgainButton, { backgroundColor: theme.card, borderColor: '#3b82f6' }]}
+                    style={[styles.scanAgainButton, { backgroundColor: theme.card, borderColor: '#52525b' }]}
                     onPress={onScanAgain}>
-                    <RefreshCw size={20} color="#3b82f6" />
-                    <Text style={styles.scanAgainButtonText}>Scan Again</Text>
+                    <RefreshCw size={20} color="#ffffff" />
+                    <Text style={[styles.scanAgainButtonText, { color: '#ffffff' }]}>Scan Again</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.goButton} onPress={onPayment}>
-                    <Text style={styles.goButtonText}>Go</Text>
-                    <ArrowRight size={20} color="#fff" />
+                <TouchableOpacity style={[styles.goButton, { backgroundColor: theme.card }]} onPress={onPayment}>
+                    <Text style={[styles.goButtonText, { color: '#ffffff' }]}>Go</Text>
+                    <ArrowRight size={20} color="#ffffff" />
                 </TouchableOpacity>
             </View>
         </>

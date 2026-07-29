@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     },
     permissionMessage: {
         fontSize: 16,
-        color: '#e0e7ff',
+        color: '#d4d4d8',
         textAlign: 'center',
         marginBottom: 32,
     },
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     permissionButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#3b82f6',
+        color: '#000',
     },
     headerBlurContainer: {
         position: 'absolute',
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     },
     headerSubtitle: {
         fontSize: 16,
-        color: '#dbeafe',
+        color: '#d4d4d8',
     },
     camera: {
         position: 'absolute',
@@ -148,19 +148,19 @@ export const styles = StyleSheet.create({
         borderRadius: 12,
         gap: 8,
         borderWidth: 2,
-        borderColor: '#3b82f6',
+        borderColor: '#52525b',
     },
     scanAgainButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#3b82f6',
+        color: '#18181b',
     },
     goButton: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#3b82f6',
+        backgroundColor: '#ffffff',
         paddingVertical: 16,
         borderRadius: 12,
         gap: 8,
@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
     goButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#fff',
+        color: '#000',
     },
     errorCard: {
         backgroundColor: '#fff',
@@ -247,12 +247,12 @@ export const styles = StyleSheet.create({
         borderRadius: 12,
         gap: 8,
         borderWidth: 2,
-        borderColor: '#3b82f6',
+        borderColor: '#52525b',
     },
     scanAgainButtonTextError: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#3b82f6',
+        color: '#18181b',
     },
     floatingSelectButton: {
         paddingHorizontal: 20,
@@ -361,7 +361,7 @@ export const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 12,
-        backgroundColor: '#eff6ff',
+        backgroundColor: '#27272a',
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -402,8 +402,8 @@ export const styles = StyleSheet.create({
         borderColor: 'transparent',
     },
     cameraOptionSelected: {
-        backgroundColor: '#eff6ff',
-        borderColor: '#3b82f6',
+        backgroundColor: '#27272a',
+        borderColor: '#52525b',
     },
     cameraOptionContent: {
         flexDirection: 'row',
@@ -418,14 +418,14 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     cameraOptionTextSelected: {
-        color: '#3b82f6',
+        color: '#ffffff',
         fontWeight: '600',
     },
     selectedIndicator: {
         width: 8,
         height: 8,
         borderRadius: 4,
-        backgroundColor: '#3b82f6',
+        backgroundColor: '#ffffff',
     },
     noCamerasContainer: {
         alignItems: 'center',

@@ -21,6 +21,11 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
     onToggleHaptics,
     onNavigateTo,
 }) => {
+    const iconColor = isDark ? '#ffffff' : '#18181b';
+    const switchTrackFalse = isDark ? '#52525b' : '#cbd5e1';
+    const switchTrackTrue = isDark ? '#ffffff' : '#18181b';
+    const switchThumbActive = isDark ? '#000' : '#ffffff';
+
     return (
         <View style={styles.settingsMenu}>
             {Platform.OS === 'web' && (
@@ -28,7 +33,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
                     style={[styles.menuItem, { backgroundColor: theme.background }]}
                     onPress={() => onNavigateTo('camera')}>
                     <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                        <Camera size={24} color="#3b82f6" />
+                        <Camera size={24} color={iconColor} />
                     </View>
                     <View style={styles.menuItemContent}>
                         <Text style={[styles.menuItemTitle, { color: theme.text }]}>Camera Settings</Text>
@@ -40,16 +45,16 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
 
             <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
                 <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Moon size={24} color="#3b82f6" />
+                    <Moon size={24} color={iconColor} />
                 </View>
                 <View style={styles.menuItemContent}>
                     <Text style={[styles.menuItemTitle, { color: theme.text }]}>Dark Mode</Text>
                     <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Switch between dark and light themes</Text>
                 </View>
                 <Switch
-                    trackColor={{ false: '#cbd5e1', true: '#3b82f6' }}
-                    thumbColor={Platform.OS === 'ios' ? '#fff' : isDark ? '#fff' : '#f4f3f4'}
-                    ios_backgroundColor="#cbd5e1"
+                    trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
+                    thumbColor={Platform.OS === 'ios' ? '#fff' : isDark ? switchThumbActive : '#f4f3f4'}
+                    ios_backgroundColor={switchTrackFalse}
                     onValueChange={onToggleTheme}
                     value={isDark}
                 />
@@ -57,16 +62,16 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
 
             <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
                 <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Zap size={24} color="#3b82f6" />
+                    <Zap size={24} color={iconColor} />
                 </View>
                 <View style={styles.menuItemContent}>
                     <Text style={[styles.menuItemTitle, { color: theme.text }]}>Haptics</Text>
                     <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Vibrate on successful scan</Text>
                 </View>
                 <Switch
-                    trackColor={{ false: '#cbd5e1', true: '#3b82f6' }}
-                    thumbColor={Platform.OS === 'ios' ? '#fff' : hapticsEnabled ? '#fff' : '#f4f3f4'}
-                    ios_backgroundColor="#cbd5e1"
+                    trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
+                    thumbColor={Platform.OS === 'ios' ? '#fff' : hapticsEnabled ? switchThumbActive : '#f4f3f4'}
+                    ios_backgroundColor={switchTrackFalse}
                     onValueChange={onToggleHaptics}
                     value={hapticsEnabled}
                 />
@@ -76,7 +81,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
                 style={[styles.menuItem, { backgroundColor: theme.background }]}
                 onPress={() => onNavigateTo('about')}>
                 <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Info size={24} color="#3b82f6" />
+                    <Info size={24} color={iconColor} />
                 </View>
                 <View style={styles.menuItemContent}>
                     <Text style={[styles.menuItemTitle, { color: theme.text }]}>About</Text>

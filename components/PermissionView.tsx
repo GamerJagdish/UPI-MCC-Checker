@@ -15,7 +15,7 @@ export const PermissionView: React.FC<PermissionViewProps> = ({ onRequestPermiss
 
     return (
         <LinearGradient
-            colors={['#1e3a8a', '#3b82f6']}
+            colors={['#000000', '#27272a']}
             style={styles.permissionContainer}>
             <CameraIcon size={64} color="#fff" strokeWidth={1.5} />
             <Text style={styles.permissionTitle}>Camera Access Required</Text>

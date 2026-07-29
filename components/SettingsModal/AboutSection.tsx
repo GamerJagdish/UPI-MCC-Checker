@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
     const displayVersion =
         Application.nativeApplicationVersion ??
         Constants.expoConfig?.version ??
-        '1.2.7';
+        '1.3.0';
 
     const handleUPICopy = () => {
         const upiId = 'gamerjagdish@upi';
@@ -56,7 +56,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
 
                     <View style={styles.aboutActionButtons}>
                         <TouchableOpacity
-                            style={styles.actionButton}
+                            style={[styles.actionButton, { backgroundColor: '#27272a' }]}
                             onPress={() => Linking.openURL('https://github.com/GamerJagdish/UPI-MCC-Checker')}>
                             <Github size={20} color="#fff" />
                             <Text style={styles.actionButtonText}>GitHub</Text>
@@ -70,7 +70,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={[styles.actionButton, { backgroundColor: '#2b71f0' }]}
+                            style={[styles.actionButton, { backgroundColor: '#52525b' }]}
                             onPress={handleUPICopy}>
                             {upiCopied ? (
                                 <Check size={20} color="#fff" />

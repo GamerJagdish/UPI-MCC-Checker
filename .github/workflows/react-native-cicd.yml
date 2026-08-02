@@ -62,7 +62,9 @@ jobs:
           key: ${{ runner.os }}-android-ccache
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: |
+          rm -f package-lock.json
+          yarn install --frozen-lockfile
 
       - name: 📱 Setup EAS build cache
         uses: actions/cache@v6

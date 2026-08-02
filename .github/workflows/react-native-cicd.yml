@@ -17,16 +17,7 @@ env:
   NODE_OPTIONS: --openssl-legacy-provider
 
 jobs:
-  check-skip:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    steps:
-      - name: Skip CI check
-        run: echo "Proceeding with workflow"
-
   build-and-release:
-    needs: check-skip
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Checkout repository
@@ -53,7 +44,6 @@ jobs:
       - name: 🏗 Setup Node.js & Yarn Cache
         uses: actions/setup-node@v7
         with:
-          node-version: "20"
           cache: "yarn"
 
       - name: ⚡ Setup C/C++ Cache (ccache)

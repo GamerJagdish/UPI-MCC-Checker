@@ -132,12 +132,58 @@ jobs:
         run: |
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
           export CCACHE_DIR="${{ github.workspace }}/.ccache"
-          npx eas-cli build --platform android --profile production-apk --local --non-interactive --output=./${{ steps.build-info.outputs.apk_name }}
-          # Collect any split APKs generated in release directory
-          find android/app/build/outputs/apk/release -name "*.apk" -exec cp {} ./ \; 2>/dev/null || true
+
+          # 1. Prebuild native android directory if missing
+          if [ ! -d "android" ]; then
+            npx expo prebuild --platform android --clean
+          fi
+
+          # 2. Inject ABI splits configuration into android/app/build.gradle if not present
+          if ! grep -q "splits {" android/app/build.gradle; then
+            cat << 'EOF' >> android/app/build.gradle
+
+          android {
+              splits {
+                  abi {
+                      reset()
+                      enable true
+                      universalApk true
+                      include "armeabi-v7a", "arm64-v8a"
+                  }
+              }
+          }
+          EOF
+          fi
+
+          # 3. Build APKs
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease \
+            -Dorg.gradle.caching=true \
+            -Dorg.gradle.parallel=true \
+            -Dorg.gradle.jvmargs="-Xmx4096m -XX:+UseG1GC" \
+            -DenableSeparateBuildPerCPUArchitecture=true
+          cd ..
+
+          # 4. Copy and rename generated APKs
+          VERSION="${{ steps.build-info.outputs.version }}"
+          for apk in android/app/build/outputs/apk/release/*.apk; do
+            if [ -f "$apk" ]; then
+              filename=$(basename "$apk")
+              if [[ "$filename" == *"universal"* ]]; then
+                cp "$apk" "./UPI-MCC-Checker-v${VERSION}-universal.apk"
+              elif [[ "$filename" == *"arm64-v8a"* ]]; then
+                cp "$apk" "./UPI-MCC-Checker-v${VERSION}-arm64-v8a.apk"
+              elif [[ "$filename" == *"armeabi-v7a"* ]]; then
+                cp "$apk" "./UPI-MCC-Checker-v${VERSION}-armeabi-v7a.apk"
+              else
+                cp "$apk" "./UPI-MCC-Checker-v${VERSION}-${filename}"
+              fi
+            fi
+          done
+          ls -la ./*.apk
         env:
           NODE_ENV: production
-          GRADLE_OPTS: "-Dorg.gradle.caching=true -Dorg.gradle.parallel=true -Dorg.gradle.jvmargs='-Xmx4096m -XX:+UseG1GC' -DreactNativeArchitectures=arm64-v8a,armeabi-v7a -DenableSeparateBuildPerCPUArchitecture=true"
 
       - name: 📝 Create GitHub Release
         uses: softprops/action-gh-release@v3

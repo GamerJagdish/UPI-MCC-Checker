@@ -32,12 +32,21 @@ jobs:
       - name: 🏗 Checkout repository
         uses: actions/checkout@v7
 
-      - name: 🏗 Setup Java & Gradle Cache
+      - name: 🏗 Setup Java
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
+
+      - name: 📱 Setup Gradle Cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: 🏗 Setup Node.js & Yarn Cache
         uses: actions/setup-node@v7

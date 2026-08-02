@@ -136,9 +136,11 @@ jobs:
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
           export CCACHE_DIR="${{ github.workspace }}/.ccache"
           npx eas-cli build --platform android --profile production-apk --local --non-interactive --output=./${{ steps.build-info.outputs.apk_name }}
+          # Collect any split APKs generated in release directory
+          find android/app/build/outputs/apk/release -name "*.apk" -exec cp {} ./ \; 2>/dev/null || true
         env:
           NODE_ENV: production
-          GRADLE_OPTS: "-Dorg.gradle.caching=true -Dorg.gradle.parallel=true -Dorg.gradle.jvmargs='-Xmx4096m -XX:+UseG1GC'"
+          GRADLE_OPTS: "-Dorg.gradle.caching=true -Dorg.gradle.parallel=true -Dorg.gradle.jvmargs='-Xmx4096m -XX:+UseG1GC' -DreactNativeArchitectures=arm64-v8a,armeabi-v7a -DenableSeparateBuildPerCPUArchitecture=true"
 
       - name: 📝 Create GitHub Release
         uses: softprops/action-gh-release@v3
@@ -147,7 +149,7 @@ jobs:
           name: "v${{ steps.build-info.outputs.version }}"
           tag_name: "v${{ steps.build-info.outputs.version }}-${{ steps.build-info.outputs.build_number }}"
           files: |
-            ./${{ steps.build-info.outputs.apk_name }}
+            ./*.apk
           body_path: changelog.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -157,5 +159,5 @@ jobs:
         with:
           name: app-builds
           path: |
-            ./${{ steps.build-info.outputs.apk_name }}
+            ./*.apk
           retention-days: 7

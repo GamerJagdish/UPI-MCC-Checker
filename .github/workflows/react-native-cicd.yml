@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: 🏗 Checkout repository
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: 🏗 Setup Java
         uses: actions/setup-java@v5
@@ -124,11 +126,14 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
           echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
+          git fetch --tags --force
           if git describe --tags --abbrev=0 > /dev/null 2>&1; then
             LAST_TAG=$(git describe --tags --abbrev=0)
-            git log $LAST_TAG..HEAD --pretty=format:"- %s" > changelog.md
+            echo "## What's Changed since $LAST_TAG" > changelog.md
+            git log $LAST_TAG..HEAD --pretty=format:"* **%s**%n%b" >> changelog.md
           else
-            git log --pretty=format:"- %s" -n 10 > changelog.md
+            echo "## What's Changed" > changelog.md
+            git log --pretty=format:"* **%s**%n%b" >> changelog.md
           fi
 
       - name: 📱 Build Production APK

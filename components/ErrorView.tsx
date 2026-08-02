@@ -57,9 +57,9 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
             </BlurView>
 
             <ScrollView style={styles.resultsContainer}>
-                <View style={[styles.errorCard, { backgroundColor: theme.card }]}>
+                <View style={[styles.errorCard, { backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border }]}>
                     <View style={styles.errorIconContainer}>
-                        <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#dc2626'} />
+                        <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#ef4444'} />
                     </View>
                     <Text style={[styles.errorCardTitle, { color: theme.text }]}>
                         {type === 'no-qr' ? 'No QR Code Found' : 'Not a UPI QR Code'}
@@ -71,7 +71,7 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                     </Text>
 
                     {type === 'invalid-upi' && rawUrl && (
-                        <View style={[styles.contentBox, { backgroundColor: theme.card }]}>
+                        <View style={[styles.contentBox, { backgroundColor: theme.iconBg, borderColor: theme.border }]}>
                             <Text style={[styles.contentLabel, { color: theme.textSecondary }]}>Scanned Content:</Text>
                             <Text style={[styles.contentValue, { color: theme.text }]}>{rawUrl}</Text>
                         </View>
@@ -92,10 +92,10 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                 )}
 
                 <TouchableOpacity
-                    style={[styles.scanAgainButtonError, { backgroundColor: theme.card }]}
+                    style={[styles.scanAgainButtonError, { backgroundColor: theme.card, borderColor: theme.border }]}
                     onPress={onScanAgain}>
-                    <RefreshCw size={20} color="#ffffff" />
-                    <Text style={[styles.scanAgainButtonTextError, { color: '#ffffff' }]}>
+                    <RefreshCw size={20} color={theme.text} />
+                    <Text style={[styles.scanAgainButtonTextError, { color: theme.text }]}>
                         {type === 'no-qr' ? 'Try Again' : 'Scan Again'}
                     </Text>
                 </TouchableOpacity>

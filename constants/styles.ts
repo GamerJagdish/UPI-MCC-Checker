@@ -202,8 +202,8 @@ export const styles = StyleSheet.create({
         backgroundColor: '#f8fafc',
         borderRadius: 12,
         padding: 16,
-        borderLeftWidth: 4,
-        borderLeftColor: '#dc2626',
+        borderWidth: 1,
+        borderColor: '#e2e8f0',
     },
     contentLabel: {
         fontSize: 12,

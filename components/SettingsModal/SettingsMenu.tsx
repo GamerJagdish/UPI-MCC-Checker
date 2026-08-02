@@ -22,9 +22,9 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
     onNavigateTo,
 }) => {
     const iconColor = isDark ? '#ffffff' : '#18181b';
-    const switchTrackFalse = isDark ? '#52525b' : '#cbd5e1';
-    const switchTrackTrue = isDark ? '#ffffff' : '#18181b';
-    const switchThumbActive = isDark ? '#000' : '#ffffff';
+    const switchTrackFalse = isDark ? '#3f3f46' : '#e2e8f0';
+    const switchTrackTrue = '#10b981';
+    const switchThumb = '#ffffff';
 
     return (
         <View style={styles.settingsMenu}>
@@ -53,7 +53,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
                 </View>
                 <Switch
                     trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
-                    thumbColor={Platform.OS === 'ios' ? '#fff' : isDark ? switchThumbActive : '#f4f3f4'}
+                    thumbColor={switchThumb}
                     ios_backgroundColor={switchTrackFalse}
                     onValueChange={onToggleTheme}
                     value={isDark}
@@ -70,7 +70,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
                 </View>
                 <Switch
                     trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
-                    thumbColor={Platform.OS === 'ios' ? '#fff' : hapticsEnabled ? switchThumbActive : '#f4f3f4'}
+                    thumbColor={switchThumb}
                     ios_backgroundColor={switchTrackFalse}
                     onValueChange={onToggleHaptics}
                     value={hapticsEnabled}

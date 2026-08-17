@@ -1,6 +1,6 @@
 <div align="center">
 	<a href="https://upimcc.gamerjagdish.com/">
-		<img src="../assets/images/hd-logo.png" width="200" alt="UPI MCC Checker">
+		<img src="assets/images/hd-logo.png" width="200" alt="UPI MCC Checker">
 	</a>
 
 
@@ -12,7 +12,7 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest/"><img alt="Latest Release" src="https://img.shields.io/github/v/release/GamerJagdish/UPI-MCC-Checker?display_name=release&style=flat-square"></a>
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/commits"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
-  <a href="../LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/github/license/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/github/license/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>
 </p>
 
 ## Features

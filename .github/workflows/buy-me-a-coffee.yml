@@ -15,5 +15,5 @@ jobs:
         with:
           BUY_ME_A_COFFEE_TOKEN: ${{ secrets.BUY_ME_A_COFFEE_TOKEN }}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN }}
-          README: ".github/README.md"
+          README: "README.md"
           BRANCH: "master"

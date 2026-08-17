@@ -1,4 +1,4 @@
-<div align="center">
+<div>
 	<a href="https://upimcc.gamerjagdish.com/">
 		<img src="assets/images/hd-logo.png" width="200" alt="UPI MCC Checker">
 	</a>
@@ -7,7 +7,7 @@
 # UPI MCC Checker
 
 A cross-platform mobile application for scanning and analyzing UPI QR codes. The Idea came to me when I realised some QR codes do have MCC in them and if I just check it beforehand I will have an idea if I should pay with my credit card or my bank account to avoid those 1% surcharge on some mcc and to make sure I'm using the right card for that merchant.
-<p align="center">
+<p>
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest/"><img alt="Downloads" src="https://img.shields.io/github/downloads/GamerJagdish/UPI-MCC-Checker/total?style=flat-square&color=4BC61E"></a>
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/releases/latest/"><img alt="Latest Release" src="https://img.shields.io/github/v/release/GamerJagdish/UPI-MCC-Checker?display_name=release&style=flat-square"></a>
   <a href="https://github.com/GamerJagdish/UPI-MCC-Checker/commits"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/GamerJagdish/UPI-MCC-Checker?style=flat-square"></a>

@@ -10,7 +10,7 @@ interface PermissionViewProps {
 
 export const PermissionView: React.FC<PermissionViewProps> = ({ onRequestPermission }) => {
     const handleLearnMore = () => {
-        Linking.openURL('https://github.com/GamerJagdish/UPI-MCC-Checker/blob/master/.github%2FREADME.md#how-it-works');
+        Linking.openURL('https://github.com/GamerJagdish/UPI-MCC-Checker/blob/master/README.md#how-it-works');
     };
 
     return (

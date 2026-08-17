@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image, Linking, Clipboard, ToastAndroid, Platform } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image, Linking, ToastAndroid, Platform } from 'react-native';
 import { Github, Coffee, Check } from 'lucide-react-native';
+import * as Clipboard from 'expo-clipboard';
 import Constants from 'expo-constants';
 import * as Application from 'expo-application';
 import { ThemeColors } from '../../types';
@@ -15,11 +16,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
     const displayVersion =
         Application.nativeApplicationVersion ??
         Constants.expoConfig?.version ??
-        '1.3.1';
+        '1.4.0';
 
-    const handleUPICopy = () => {
+    const handleUPICopy = async () => {
         const upiId = 'gamerjagdish@upi';
-        Clipboard.setString(upiId);
+        await Clipboard.setStringAsync(upiId);
         setUpiCopied(true);
 
         if (Platform.OS === 'android') {
@@ -77,7 +78,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                             ) : (
                                 <Image
                                     source={require('../../assets/images/bhim.png')}
-                                    style={{ width: 20, height: 20, tintColor: '#fff' }}
+                                    style={{ width: 20, height: 20 }}
+                                    tintColor="#fff"
                                     resizeMode="contain"
                                 />
                             )}

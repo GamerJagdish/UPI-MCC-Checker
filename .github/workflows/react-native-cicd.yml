@@ -41,6 +41,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: 🏗 Enable Corepack
+        run: corepack enable
+
       - name: 🏗 Setup Node.js & Yarn Cache
         uses: actions/setup-node@v7
         with:
@@ -54,7 +57,7 @@ jobs:
       - name: 📦 Install dependencies
         run: |
           rm -f package-lock.json
-          yarn install --frozen-lockfile
+          yarn install --immutable
 
       - name: 📱 Setup EAS build cache
         uses: actions/cache@v6

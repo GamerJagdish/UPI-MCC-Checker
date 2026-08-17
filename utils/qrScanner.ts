@@ -1,10 +1,12 @@
 import { Platform } from 'react-native';
-import { Camera } from 'expo-camera';
 import jsQR from 'jsqr';
+import { Buffer } from 'buffer';
+import * as ImageManipulator from 'expo-image-manipulator';
+import jpeg from 'jpeg-js';
 
 export const scanQRFromImage = async (imageUri: string): Promise<string | null> => {
     if (Platform.OS === 'web') {
-        // Web: Use jsQR to scan the image
+        // Web: Use jsQR to scan the image via canvas
         return new Promise((resolve) => {
             const img = new window.Image();
             img.crossOrigin = 'anonymous';
@@ -26,15 +28,36 @@ export const scanQRFromImage = async (imageUri: string): Promise<string | null> 
             img.src = imageUri;
         });
     } else {
-        // Native: Use Camera.scanFromURLAsync
+        // Native: Manipulate and decode image bytes for jsQR
         try {
-            const scanResults = await Camera.scanFromURLAsync(imageUri, ['qr']);
-            if (scanResults && scanResults.length > 0) {
-                return scanResults[0].data;
+            const manipulated = await ImageManipulator.manipulateAsync(
+                imageUri,
+                [{ resize: { width: 1000 } }],
+                {
+                    compress: 0.9,
+                    format: ImageManipulator.SaveFormat.JPEG,
+                    base64: true,
+                }
+            );
+
+            if (!manipulated.base64) {
+                return null;
+            }
+
+            const imageBuffer = Buffer.from(manipulated.base64, 'base64');
+            const rawImageData = jpeg.decode(imageBuffer, { useTArray: true });
+            const code = jsQR(
+                new Uint8ClampedArray(rawImageData.data),
+                rawImageData.width,
+                rawImageData.height
+            );
+
+            if (code) {
+                return code.data;
             }
             return null;
         } catch (error) {
-            console.error('Error scanning with Camera.scanFromURLAsync:', error);
+            console.error('Error scanning with jsQR:', error);
             return null;
         }
     }

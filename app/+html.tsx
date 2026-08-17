@@ -26,11 +26,20 @@ export default function Root({ children }: PropsWithChildren) {
 }
 
 const responsiveBackground = `
-body {
-  background-color: #fff;
+html, body, #root {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
-@media (prefers-color-scheme: dark) {
+body {
+  background-color: #000;
+}
+@media (prefers-color-scheme: light) {
   body {
-    background-color: #000;
+    background-color: #f8fafc;
   }
 }`;

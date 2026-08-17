@@ -38,7 +38,7 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                 </LinearGradient>
             </BlurView>
 
-            <ScrollView style={styles.resultsContainer}>
+            <ScrollView style={[styles.resultsContainer, { backgroundColor: theme.background }]}>
                 <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
                     {upiData.pn && (
                         <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
@@ -100,15 +100,15 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                 </View>
             </ScrollView>
 
-            <View style={styles.actionButtons}>
+            <View style={[styles.actionButtons, { backgroundColor: theme.background }]}>
                 <TouchableOpacity
-                    style={[styles.scanAgainButton, { backgroundColor: theme.card, borderColor: '#52525b' }]}
+                    style={[styles.scanAgainButton, { backgroundColor: theme.card, borderColor: theme.border }]}
                     onPress={onScanAgain}>
-                    <RefreshCw size={20} color="#ffffff" />
-                    <Text style={[styles.scanAgainButtonText, { color: '#ffffff' }]}>Scan Again</Text>
+                    <RefreshCw size={20} color={theme.text} />
+                    <Text style={[styles.scanAgainButtonText, { color: theme.text }]}>Scan Again</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.goButton, { backgroundColor: theme.card }]} onPress={onPayment}>
+                <TouchableOpacity style={[styles.goButton, { backgroundColor: '#10b981' }]} onPress={onPayment}>
                     <Text style={[styles.goButtonText, { color: '#ffffff' }]}>Go</Text>
                     <ArrowRight size={20} color="#ffffff" />
                 </TouchableOpacity>

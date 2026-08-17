@@ -270,10 +270,10 @@ export default function Home() {
 
         <View style={styles.floatingButtonContainer}>
           <TouchableOpacity
-            style={[styles.scanAgainButtonError, { backgroundColor: theme.card }]}
+            style={[styles.scanAgainButtonError, { backgroundColor: theme.card, borderColor: theme.border }]}
             onPress={handleScanAgain}>
-            <RefreshCw size={20} color="#ffffff" />
-            <Text style={[styles.scanAgainButtonTextError, { color: '#ffffff' }]}>Back</Text>
+            <RefreshCw size={20} color={theme.text} />
+            <Text style={[styles.scanAgainButtonTextError, { color: theme.text }]}>Back</Text>
           </TouchableOpacity>
         </View>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeMode, ThemeColors } from '../types';
 import { Colors } from '../constants/colors';
@@ -14,6 +14,13 @@ export const useTheme = () => {
     useEffect(() => {
         loadThemePreference();
     }, []);
+
+    useEffect(() => {
+        if (Platform.OS === 'web' && typeof document !== 'undefined') {
+            document.documentElement.style.backgroundColor = theme.background;
+            document.body.style.backgroundColor = theme.background;
+        }
+    }, [theme.background]);
 
     const loadThemePreference = async () => {
         try {

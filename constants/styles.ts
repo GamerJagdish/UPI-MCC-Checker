@@ -4,6 +4,12 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f8fafc',
+        ...Platform.select({
+            web: {
+                minHeight: '100vh',
+                height: '100%',
+            } as any,
+        }),
     },
     loadingText: {
         flex: 1,
@@ -113,6 +119,11 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         paddingTop: Platform.OS === 'web' ? 120 : 156,
+        ...Platform.select({
+            web: {
+                minHeight: '100%',
+            } as any,
+        }),
     },
     resultCard: {
         backgroundColor: '#fff',
@@ -146,24 +157,21 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fff',
         paddingVertical: 16,
         borderRadius: 12,
         gap: 8,
-        borderWidth: 2,
-        borderColor: '#52525b',
+        borderWidth: 1.5,
     },
     scanAgainButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#18181b',
     },
     goButton: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#10b981',
         paddingVertical: 16,
         borderRadius: 12,
         gap: 8,
@@ -171,7 +179,7 @@ export const styles = StyleSheet.create({
     goButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#000',
+        color: '#ffffff',
     },
     errorCard: {
         backgroundColor: '#fff',

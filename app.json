@@ -3,7 +3,7 @@
     "name": "UPI MCC Checker",
     "description": "An app to check merchant category codes of UPI QR codes.",
     "slug": "UPIMCCChecker",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "githubUrl":"https://github.com/GamerJagdish/UPI-MCC-Checker",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

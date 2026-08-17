@@ -56,7 +56,7 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                 </LinearGradient>
             </BlurView>
 
-            <ScrollView style={styles.resultsContainer}>
+            <ScrollView style={[styles.resultsContainer, { backgroundColor: theme.background }]}>
                 <View style={[styles.errorCard, { backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border }]}>
                     <View style={styles.errorIconContainer}>
                         <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#ef4444'} />
@@ -79,7 +79,7 @@ export const ErrorView: React.FC<ErrorViewProps> = ({
                 </View>
             </ScrollView>
 
-            <View style={styles.errorActionButtons}>
+            <View style={[styles.errorActionButtons, { backgroundColor: theme.background }]}>
                 {type === 'invalid-upi' && rawUrl && (
                     <TouchableOpacity
                         style={styles.copyButton}

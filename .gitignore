@@ -23,7 +23,13 @@ android/
 npm-debug.*
 yarn-debug.*
 yarn-error.*
-
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 # macos
 .DS_Store
 *.pem

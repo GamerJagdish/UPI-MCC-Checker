@@ -147,7 +147,7 @@ export default function Home() {
   if (!permission) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style={isDark ? "light" : "dark"} translucent backgroundColor="transparent" />
+        <StatusBar style={isDark ? "light" : "dark"} />
         <Text style={[styles.loadingText, { color: theme.textSecondary }]}>Loading camera...</Text>
       </View>
     );
@@ -157,7 +157,7 @@ export default function Home() {
   if (!permission.granted) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <StatusBar style="light" />
         <PermissionView onRequestPermission={requestPermission} />
       </View>
     );
@@ -167,7 +167,7 @@ export default function Home() {
   if (scanned && upiData) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <StatusBar style="light" />
         <ResultsView
           upiData={upiData}
           theme={theme}
@@ -197,7 +197,7 @@ export default function Home() {
   if (scanned && noQRFound) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <StatusBar style="light" />
         <ErrorView
           type="no-qr"
           theme={theme}
@@ -226,7 +226,7 @@ export default function Home() {
   if (scanned && !upiData && rawUrl) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <StatusBar style="light" />
         <ErrorView
           type="invalid-upi"
           theme={theme}
@@ -258,7 +258,7 @@ export default function Home() {
   if (selectedImage && noQRFound === false && !upiData) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <StatusBar style="light" />
         <Image
           source={{ uri: selectedImage }}
           style={styles.selectedImage}
@@ -298,7 +298,7 @@ export default function Home() {
   // Camera view (default)
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" />
       {Platform.OS === 'web' ? (
         <View style={styles.camera}>
           <WebCamera

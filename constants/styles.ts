@@ -98,9 +98,16 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: 32,
         fontWeight: '600',
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: 0, height: 1 },
-        textShadowRadius: 3,
+        ...Platform.select({
+            web: {
+                textShadow: '0px 1px 3px rgba(0, 0, 0, 0.75)',
+            } as any,
+            default: {
+                textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                textShadowOffset: { width: 0, height: 1 },
+                textShadowRadius: 3,
+            },
+        }),
     },
     resultsContainer: {
         flex: 1,
@@ -111,11 +118,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 16,
         padding: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        elevation: 3,
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     },
     paramRow: {
         paddingVertical: 14,
@@ -175,11 +178,7 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 24,
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        elevation: 3,
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     },
     errorIconContainer: {
         marginBottom: 16,
@@ -273,11 +272,7 @@ export const styles = StyleSheet.create({
         marginLeft: -85,
         borderRadius: 50,
         overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 8,
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
     },
     selectedImage: {
         flex: 1,

@@ -38,7 +38,9 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                 </LinearGradient>
             </BlurView>
 
-            <ScrollView style={[styles.resultsContainer, { backgroundColor: theme.background }]}>
+            <ScrollView
+                style={[styles.resultsContainer, { backgroundColor: theme.background }]}
+                contentContainerStyle={{ paddingBottom: 20 }}>
                 <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
                     {upiData.pn && (
                         <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>

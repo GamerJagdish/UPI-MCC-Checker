@@ -119,11 +119,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         paddingTop: Platform.OS === 'web' ? 120 : 156,
-        ...Platform.select({
-            web: {
-                minHeight: '100%',
-            } as any,
-        }),
     },
     resultCard: {
         backgroundColor: '#fff',
@@ -151,6 +146,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 20,
         gap: 12,
+        flexShrink: 0,
     },
     scanAgainButton: {
         flex: 1,
@@ -228,6 +224,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 20,
         gap: 12,
+        flexShrink: 0,
     },
     copyButton: {
         flex: 1,

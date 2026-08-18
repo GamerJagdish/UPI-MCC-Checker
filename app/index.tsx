@@ -333,15 +333,17 @@ export default function Home() {
 
       <ScannerOverlay />
 
-      <BlurView intensity={80} tint="dark" style={styles.blurWrapper}>
-        <TouchableOpacity
-          style={styles.floatingSelectButton}
-          onPress={handleSelectPhoto}
-          activeOpacity={0.8}>
-          <ImageIcon size={24} color="#fff" />
-          <Text style={styles.floatingSelectButtonText}>Select Photo</Text>
-        </TouchableOpacity>
-      </BlurView>
+      <View style={styles.floatingButtonWrapper} pointerEvents="box-none">
+        <BlurView intensity={80} tint="dark" style={styles.blurWrapper}>
+          <TouchableOpacity
+            style={styles.floatingSelectButton}
+            onPress={handleSelectPhoto}
+            activeOpacity={0.8}>
+            <ImageIcon size={24} color="#fff" />
+            <Text style={styles.floatingSelectButtonText}>Select Photo</Text>
+          </TouchableOpacity>
+        </BlurView>
+      </View>
 
       <SettingsModal
         visible={settingsVisible}

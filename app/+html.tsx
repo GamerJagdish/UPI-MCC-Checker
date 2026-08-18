@@ -11,7 +11,7 @@ export default function Root({ children }: PropsWithChildren) {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, interactive-widget=resizes-content" />
 
         {/* Link the PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
@@ -27,16 +27,23 @@ export default function Root({ children }: PropsWithChildren) {
 
 const responsiveBackground = `
 html, body, #root {
-  min-height: 100%;
+  width: 100%;
   height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 body {
   background-color: #000;
+  touch-action: manipulation;
 }
 @media (prefers-color-scheme: light) {
   body {

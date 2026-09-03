@@ -15,6 +15,17 @@ export const useTheme = () => {
   const theme: ThemeColors = Colors[isDark ? 'dark' : 'light'];
 
   useEffect(() => {
+    const loadThemePreference = async () => {
+      try {
+        const savedTheme = await AsyncStorage.getItem('themeMode');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          setThemeMode(savedTheme);
+        }
+      } catch (error) {
+        console.error('Error loading theme preference:', error);
+      }
+    };
+
     loadThemePreference();
   }, []);
 
@@ -24,17 +35,6 @@ export const useTheme = () => {
       document.body.style.backgroundColor = theme.background;
     }
   }, [theme.background]);
-
-  const loadThemePreference = async () => {
-    try {
-      const savedTheme = await AsyncStorage.getItem('themeMode');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        setThemeMode(savedTheme);
-      }
-    } catch (error) {
-      console.error('Error loading theme preference:', error);
-    }
-  };
 
   const toggleTheme = async (value: boolean) => {
     try {

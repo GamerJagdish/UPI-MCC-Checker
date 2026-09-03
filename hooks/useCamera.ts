@@ -13,33 +13,35 @@ export const useCamera = () => {
 
   useEffect(() => {
     if (Platform.OS === 'web') {
+      const loadSavedCameraAndDevices = async () => {
+        try {
+          // Load saved camera preference
+          const savedCameraId = await AsyncStorage.getItem('selectedCameraId');
+
+          // Get available cameras
+          const devices = await navigator.mediaDevices.enumerateDevices();
+          const cameras = devices.filter(
+            (device) => device.kind === 'videoinput',
+          );
+          setAvailableCameras(cameras);
+
+          // Set the camera ID
+          if (
+            savedCameraId &&
+            cameras.some((cam) => cam.deviceId === savedCameraId)
+          ) {
+            setSelectedCameraId(savedCameraId);
+          } else if (cameras.length > 0) {
+            setSelectedCameraId(cameras[0].deviceId);
+          }
+        } catch (error) {
+          console.error('Error loading cameras:', error);
+        }
+      };
+
       loadSavedCameraAndDevices();
     }
   }, []);
-
-  const loadSavedCameraAndDevices = async () => {
-    try {
-      // Load saved camera preference
-      const savedCameraId = await AsyncStorage.getItem('selectedCameraId');
-
-      // Get available cameras
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const cameras = devices.filter((device) => device.kind === 'videoinput');
-      setAvailableCameras(cameras);
-
-      // Set the camera ID
-      if (
-        savedCameraId &&
-        cameras.some((cam) => cam.deviceId === savedCameraId)
-      ) {
-        setSelectedCameraId(savedCameraId);
-      } else if (cameras.length > 0) {
-        setSelectedCameraId(cameras[0].deviceId);
-      }
-    } catch (error) {
-      console.error('Error loading cameras:', error);
-    }
-  };
 
   const handleCameraSelection = async (cameraId: string) => {
     try {

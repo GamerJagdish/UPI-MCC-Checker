@@ -16,12 +16,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/GamerJagdish/UPI-MCC-Checker.git
 cd UPI-MCC-Checker
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -31,6 +33,7 @@ npm install
 ### Development Server
 
 Start the Expo development server:
+
 ```bash
 npx expo start
 ```

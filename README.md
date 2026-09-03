@@ -3,7 +3,6 @@
 		<img src="assets/images/hd-logo.png" width="200" alt="UPI MCC Checker">
 	</a>
 
-
 # UPI MCC Checker
 
 A cross-platform mobile application for scanning and analyzing UPI QR codes. The Idea came to me when I realised some QR codes do have MCC in them and if I just check it beforehand I will have an idea if I should pay with my credit card or my bank account to avoid those 1% surcharge on some mcc and to make sure I'm using the right card for that merchant.
@@ -18,7 +17,7 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
 ## Features
 
 <div align="left">
-  
+
 - Scan UPI QR codes using device camera
 - Upload and scan QR codes from images
 - Display merchant details (name, VPA, transaction info)
@@ -32,7 +31,7 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
 ## How It Works
 
 <div align="left">
-  
+
 1. The app requests camera permission on first launch
 2. Point your camera at a UPI QR code or upload an image containing one
 3. The app automatically detects and parses the QR code
@@ -42,15 +41,17 @@ A cross-platform mobile application for scanning and analyzing UPI QR codes. The
    - Transaction details (amount, reference ID, notes)
    - Organization ID and UPI version
 5. Hit go to then launch your UPI app.
-Remember if you have a specific offer like "Scan and pay" then it's suggested that you use the main app itself. a good example will be kiwi app, that thing may only give you 0.5% instead of 1.5% if you redirect from UPI MCC Checker app to their app. so in such cases only use the app to check the mcc and then go to the main app to pay.
+   Remember if you have a specific offer like "Scan and pay" then it's suggested that you use the main app itself. a good example will be kiwi app, that thing may only give you 0.5% instead of 1.5% if you redirect from UPI MCC Checker app to their app. so in such cases only use the app to check the mcc and then go to the main app to pay.
 
 </div>
 
 ## Download or Visit
+
 There are two ways to use this either you can visit the website or download the app. <br/>
 Website may fail to detect QR codes sometimes so that's the only reason app is better for day to day use. <br/><br/>
 [![UPI-MCC-Checker Stable](https://img.shields.io/github/release/gamerjagdish/upi-mcc-checker.svg?maxAge=3600&display_name=release&label=Download%20App&labelColor=06599d&color=043b69&style=for-the-badge)](https://github.com/gamerjagdish/upi-mcc-checker/releases)
 [![UPI-MCC-Checker website](https://img.shields.io/badge/Visit%20Website%20-20B2AA?style=for-the-badge)](https://upimcc.gamerjagdish.com/)
+
 ## Contributing
 
 Contributions are welcome. Please check [CONTRIBUTING.md](CONTRIBUTING.md) for technical details and setup instructions.
@@ -59,13 +60,11 @@ Contributions are welcome. Please check [CONTRIBUTING.md](CONTRIBUTING.md) for t
 
 If you find this project useful, consider supporting the developer: <br/><br/>
 <a href="https://www.buymeacoffee.com/gamerjagdish" target="_blank" title="buymeacoffee">
-  <img src="https://iili.io/JoQ1MeS.md.png"  alt="buymeacoffee-yellow-badge" style="width: 204px;"></a><br/>
-  <a href="https://www.ko-fi.com/gamerjagdish" target="_blank" title="ko-fi">
-  <img src="https://iili.io/qHFVi5Q.md.png"  alt="ko-fi-badge" style="width: 304px;"></a>
+<img src="https://iili.io/JoQ1MeS.md.png"  alt="buymeacoffee-yellow-badge" style="width: 204px;"></a><br/>
+<a href="https://www.ko-fi.com/gamerjagdish" target="_blank" title="ko-fi">
+<img src="https://iili.io/qHFVi5Q.md.png"  alt="ko-fi-badge" style="width: 304px;"></a>
 
 ## Donations
-
-
 
 </div>
 

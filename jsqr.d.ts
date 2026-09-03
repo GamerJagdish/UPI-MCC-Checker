@@ -21,7 +21,8 @@ declare module 'jsqr' {
     width: number,
     height: number,
     options?: {
-      inversionAttempts?: 'dontInvert' | 'onlyInvert' | 'attemptBoth' | 'invertFirst';
-    }
+      inversionAttempts?:
+        'dontInvert' | 'onlyInvert' | 'attemptBoth' | 'invertFirst';
+    },
   ): QRCode | null;
 }

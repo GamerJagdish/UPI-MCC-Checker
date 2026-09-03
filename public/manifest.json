@@ -36,7 +36,5 @@
   ],
   "description": "Scan UPI QR codes to find the MCC hidden it it.",
   "lang": "en",
-  "categories": [
-    "utilities"
-  ]
+  "categories": ["utilities"]
 }

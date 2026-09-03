@@ -63,7 +63,7 @@ export default function Home() {
     setScanned(true);
     // Trigger haptic feedback on successful scan
     triggerSuccessHaptic();
-    
+
     setRawUrl(data);
     const parsed = parseUPIUrl(data);
     setUpiData(parsed);
@@ -147,8 +147,10 @@ export default function Home() {
   if (!permission) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style={isDark ? "light" : "dark"} />
-        <Text style={[styles.loadingText, { color: theme.textSecondary }]}>Loading camera...</Text>
+        <StatusBar style={isDark ? 'light' : 'dark'} />
+        <Text style={[styles.loadingText, { color: theme.textSecondary }]}>
+          Loading camera...
+        </Text>
       </View>
     );
   }
@@ -259,10 +261,7 @@ export default function Home() {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
         <StatusBar style="light" />
-        <Image
-          source={{ uri: selectedImage }}
-          style={styles.selectedImage}
-        />
+        <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
 
         <View style={styles.processingOverlay}>
           <Text style={styles.processingText}>Processing image...</Text>
@@ -270,10 +269,18 @@ export default function Home() {
 
         <View style={styles.floatingButtonContainer}>
           <TouchableOpacity
-            style={[styles.scanAgainButtonError, { backgroundColor: theme.card, borderColor: theme.border }]}
-            onPress={handleScanAgain}>
+            style={[
+              styles.scanAgainButtonError,
+              { backgroundColor: theme.card, borderColor: theme.border },
+            ]}
+            onPress={handleScanAgain}
+          >
             <RefreshCw size={20} color={theme.text} />
-            <Text style={[styles.scanAgainButtonTextError, { color: theme.text }]}>Back</Text>
+            <Text
+              style={[styles.scanAgainButtonTextError, { color: theme.text }]}
+            >
+              Back
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -320,12 +327,16 @@ export default function Home() {
       )}
 
       <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
-        <LinearGradient colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']} style={styles.header}>
+        <LinearGradient
+          colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
+          style={styles.header}
+        >
           <Text style={styles.headerTitle}>UPI MCC Checker</Text>
           <Text style={styles.headerSubtitle}>Scan UPI QR Code</Text>
           <TouchableOpacity
             style={styles.settingsButton}
-            onPress={() => setSettingsVisible(true)}>
+            onPress={() => setSettingsVisible(true)}
+          >
             <Settings size={28} color="#fff" />
           </TouchableOpacity>
         </LinearGradient>
@@ -338,7 +349,8 @@ export default function Home() {
           <TouchableOpacity
             style={styles.floatingSelectButton}
             onPress={handleSelectPhoto}
-            activeOpacity={0.8}>
+            activeOpacity={0.8}
+          >
             <ImageIcon size={24} color="#fff" />
             <Text style={styles.floatingSelectButtonText}>Select Photo</Text>
           </TouchableOpacity>

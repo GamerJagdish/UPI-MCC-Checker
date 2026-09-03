@@ -5,90 +5,121 @@ import { ThemeColors } from '../../types';
 import { styles } from '../../constants/styles';
 
 interface SettingsMenuProps {
-    theme: ThemeColors;
-    isDark: boolean;
-    onToggleTheme: (value: boolean) => void;
-    hapticsEnabled: boolean;
-    onToggleHaptics: (value: boolean) => void;
-    onNavigateTo: (view: 'camera' | 'about') => void;
+  theme: ThemeColors;
+  isDark: boolean;
+  onToggleTheme: (value: boolean) => void;
+  hapticsEnabled: boolean;
+  onToggleHaptics: (value: boolean) => void;
+  onNavigateTo: (view: 'camera' | 'about') => void;
 }
 
 export const SettingsMenu: React.FC<SettingsMenuProps> = ({
-    theme,
-    isDark,
-    onToggleTheme,
-    hapticsEnabled,
-    onToggleHaptics,
-    onNavigateTo,
+  theme,
+  isDark,
+  onToggleTheme,
+  hapticsEnabled,
+  onToggleHaptics,
+  onNavigateTo,
 }) => {
-    const iconColor = isDark ? '#ffffff' : '#18181b';
-    const switchTrackFalse = isDark ? '#3f3f46' : '#e2e8f0';
-    const switchTrackTrue = '#10b981';
-    const switchThumb = '#ffffff';
+  const iconColor = isDark ? '#ffffff' : '#18181b';
+  const switchTrackFalse = isDark ? '#3f3f46' : '#e2e8f0';
+  const switchTrackTrue = '#10b981';
+  const switchThumb = '#ffffff';
 
-    return (
-        <View style={styles.settingsMenu}>
-            {Platform.OS === 'web' && (
-                <TouchableOpacity
-                    style={[styles.menuItem, { backgroundColor: theme.background }]}
-                    onPress={() => onNavigateTo('camera')}>
-                    <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                        <Camera size={24} color={iconColor} />
-                    </View>
-                    <View style={styles.menuItemContent}>
-                        <Text style={[styles.menuItemTitle, { color: theme.text }]}>Camera Settings</Text>
-                        <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Choose which camera to use</Text>
-                    </View>
-                    <ArrowRight size={20} color={theme.border} />
-                </TouchableOpacity>
-            )}
+  return (
+    <View style={styles.settingsMenu}>
+      {Platform.OS === 'web' && (
+        <TouchableOpacity
+          style={[styles.menuItem, { backgroundColor: theme.background }]}
+          onPress={() => onNavigateTo('camera')}
+        >
+          <View
+            style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}
+          >
+            <Camera size={24} color={iconColor} />
+          </View>
+          <View style={styles.menuItemContent}>
+            <Text style={[styles.menuItemTitle, { color: theme.text }]}>
+              Camera Settings
+            </Text>
+            <Text
+              style={[
+                styles.menuItemDescription,
+                { color: theme.textSecondary },
+              ]}
+            >
+              Choose which camera to use
+            </Text>
+          </View>
+          <ArrowRight size={20} color={theme.border} />
+        </TouchableOpacity>
+      )}
 
-            <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
-                <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Moon size={24} color={iconColor} />
-                </View>
-                <View style={styles.menuItemContent}>
-                    <Text style={[styles.menuItemTitle, { color: theme.text }]}>Dark Mode</Text>
-                    <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Switch between dark and light themes</Text>
-                </View>
-                <Switch
-                    trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
-                    thumbColor={switchThumb}
-                    ios_backgroundColor={switchTrackFalse}
-                    onValueChange={onToggleTheme}
-                    value={isDark}
-                />
-            </View>
-
-            <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
-                <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Zap size={24} color={iconColor} />
-                </View>
-                <View style={styles.menuItemContent}>
-                    <Text style={[styles.menuItemTitle, { color: theme.text }]}>Haptics</Text>
-                    <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>Vibrate on successful scan</Text>
-                </View>
-                <Switch
-                    trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
-                    thumbColor={switchThumb}
-                    ios_backgroundColor={switchTrackFalse}
-                    onValueChange={onToggleHaptics}
-                    value={hapticsEnabled}
-                />
-            </View>
-
-            <TouchableOpacity
-                style={[styles.menuItem, { backgroundColor: theme.background }]}
-                onPress={() => onNavigateTo('about')}>
-                <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
-                    <Info size={24} color={iconColor} />
-                </View>
-                <View style={styles.menuItemContent}>
-                    <Text style={[styles.menuItemTitle, { color: theme.text }]}>About</Text>
-                    <Text style={[styles.menuItemDescription, { color: theme.textSecondary }]}>App info and developer details</Text>
-                </View>
-                <ArrowRight size={20} color={theme.border} />
-            </TouchableOpacity>
+      <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
+        <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
+          <Moon size={24} color={iconColor} />
         </View>
-    );
+        <View style={styles.menuItemContent}>
+          <Text style={[styles.menuItemTitle, { color: theme.text }]}>
+            Dark Mode
+          </Text>
+          <Text
+            style={[styles.menuItemDescription, { color: theme.textSecondary }]}
+          >
+            Switch between dark and light themes
+          </Text>
+        </View>
+        <Switch
+          trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
+          thumbColor={switchThumb}
+          ios_backgroundColor={switchTrackFalse}
+          onValueChange={onToggleTheme}
+          value={isDark}
+        />
+      </View>
+
+      <View style={[styles.menuItem, { backgroundColor: theme.background }]}>
+        <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
+          <Zap size={24} color={iconColor} />
+        </View>
+        <View style={styles.menuItemContent}>
+          <Text style={[styles.menuItemTitle, { color: theme.text }]}>
+            Haptics
+          </Text>
+          <Text
+            style={[styles.menuItemDescription, { color: theme.textSecondary }]}
+          >
+            Vibrate on successful scan
+          </Text>
+        </View>
+        <Switch
+          trackColor={{ false: switchTrackFalse, true: switchTrackTrue }}
+          thumbColor={switchThumb}
+          ios_backgroundColor={switchTrackFalse}
+          onValueChange={onToggleHaptics}
+          value={hapticsEnabled}
+        />
+      </View>
+
+      <TouchableOpacity
+        style={[styles.menuItem, { backgroundColor: theme.background }]}
+        onPress={() => onNavigateTo('about')}
+      >
+        <View style={[styles.menuItemIcon, { backgroundColor: theme.iconBg }]}>
+          <Info size={24} color={iconColor} />
+        </View>
+        <View style={styles.menuItemContent}>
+          <Text style={[styles.menuItemTitle, { color: theme.text }]}>
+            About
+          </Text>
+          <Text
+            style={[styles.menuItemDescription, { color: theme.textSecondary }]}
+          >
+            App info and developer details
+          </Text>
+        </View>
+        <ArrowRight size={20} color={theme.border} />
+      </TouchableOpacity>
+    </View>
+  );
 };

@@ -7,101 +7,138 @@ import { ThemeColors } from '../types';
 import { styles } from '../constants/styles';
 
 interface ErrorViewProps {
-    type: 'no-qr' | 'invalid-upi';
-    theme: ThemeColors;
-    rawUrl?: string;
-    copied?: boolean;
-    onScanAgain: () => void;
-    onCopy?: () => void;
-    onSettingsPress: () => void;
+  type: 'no-qr' | 'invalid-upi';
+  theme: ThemeColors;
+  rawUrl?: string;
+  copied?: boolean;
+  onScanAgain: () => void;
+  onCopy?: () => void;
+  onSettingsPress: () => void;
 }
 
 export const ErrorView: React.FC<ErrorViewProps> = ({
-    type,
-    theme,
-    rawUrl,
-    copied,
-    onScanAgain,
-    onCopy,
-    onSettingsPress,
+  type,
+  theme,
+  rawUrl,
+  copied,
+  onScanAgain,
+  onCopy,
+  onSettingsPress,
 }) => {
-    const handleCopy = async () => {
-        if (!rawUrl || !onCopy) return;
-        try {
-            await Share.share({
-                message: rawUrl,
-                url: rawUrl,
-            });
-            onCopy();
-        } catch (error) {
-            console.error('Error copying:', error);
-        }
-    };
+  const handleCopy = async () => {
+    if (!rawUrl || !onCopy) return;
+    try {
+      await Share.share({
+        message: rawUrl,
+        url: rawUrl,
+      });
+      onCopy();
+    } catch (error) {
+      console.error('Error copying:', error);
+    }
+  };
 
-    return (
-        <>
-            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
-                <LinearGradient
-                    colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
-                    style={styles.header}>
-                    <Text style={styles.headerTitle}>UPI MCC Checker</Text>
-                    <Text style={styles.headerSubtitle}>
-                        {type === 'no-qr' ? 'No QR Code Found' : 'Invalid QR Code'}
-                    </Text>
-                    <TouchableOpacity
-                        style={styles.settingsButton}
-                        onPress={onSettingsPress}>
-                        <Settings size={28} color="#fff" />
-                    </TouchableOpacity>
-                </LinearGradient>
-            </BlurView>
+  return (
+    <>
+      <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
+        <LinearGradient
+          colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
+          style={styles.header}
+        >
+          <Text style={styles.headerTitle}>UPI MCC Checker</Text>
+          <Text style={styles.headerSubtitle}>
+            {type === 'no-qr' ? 'No QR Code Found' : 'Invalid QR Code'}
+          </Text>
+          <TouchableOpacity
+            style={styles.settingsButton}
+            onPress={onSettingsPress}
+          >
+            <Settings size={28} color="#fff" />
+          </TouchableOpacity>
+        </LinearGradient>
+      </BlurView>
 
-            <ScrollView
-                style={[styles.resultsContainer, { backgroundColor: theme.background }]}
-                contentContainerStyle={{ paddingBottom: 20 }}>
-                <View style={[styles.errorCard, { backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border }]}>
-                    <View style={styles.errorIconContainer}>
-                        <AlertCircle size={48} color={type === 'no-qr' ? '#f59e0b' : '#ef4444'} />
-                    </View>
-                    <Text style={[styles.errorCardTitle, { color: theme.text }]}>
-                        {type === 'no-qr' ? 'No QR Code Found' : 'Not a UPI QR Code'}
-                    </Text>
-                    <Text style={[styles.errorCardMessage, { color: theme.textSecondary }]}>
-                        {type === 'no-qr'
-                            ? 'No QR code was detected in the selected image.'
-                            : "The scanned QR code doesn't appear to be a valid UPI payment code."}
-                    </Text>
+      <ScrollView
+        style={[styles.resultsContainer, { backgroundColor: theme.background }]}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
+        <View
+          style={[
+            styles.errorCard,
+            {
+              backgroundColor: theme.card,
+              borderWidth: 1,
+              borderColor: theme.border,
+            },
+          ]}
+        >
+          <View style={styles.errorIconContainer}>
+            <AlertCircle
+              size={48}
+              color={type === 'no-qr' ? '#f59e0b' : '#ef4444'}
+            />
+          </View>
+          <Text style={[styles.errorCardTitle, { color: theme.text }]}>
+            {type === 'no-qr' ? 'No QR Code Found' : 'Not a UPI QR Code'}
+          </Text>
+          <Text
+            style={[styles.errorCardMessage, { color: theme.textSecondary }]}
+          >
+            {type === 'no-qr'
+              ? 'No QR code was detected in the selected image.'
+              : "The scanned QR code doesn't appear to be a valid UPI payment code."}
+          </Text>
 
-                    {type === 'invalid-upi' && rawUrl && (
-                        <View style={[styles.contentBox, { backgroundColor: theme.iconBg, borderColor: theme.border }]}>
-                            <Text style={[styles.contentLabel, { color: theme.textSecondary }]}>Scanned Content:</Text>
-                            <Text style={[styles.contentValue, { color: theme.text }]}>{rawUrl}</Text>
-                        </View>
-                    )}
-                </View>
-            </ScrollView>
-
-            <View style={[styles.errorActionButtons, { backgroundColor: theme.background }]}>
-                {type === 'invalid-upi' && rawUrl && (
-                    <TouchableOpacity
-                        style={styles.copyButton}
-                        onPress={handleCopy}>
-                        <Copy size={20} color="#fff" />
-                        <Text style={styles.copyButtonText}>
-                            {copied ? 'Copied!' : 'Copy'}
-                        </Text>
-                    </TouchableOpacity>
-                )}
-
-                <TouchableOpacity
-                    style={[styles.scanAgainButtonError, { backgroundColor: theme.card, borderColor: theme.border }]}
-                    onPress={onScanAgain}>
-                    <RefreshCw size={20} color={theme.text} />
-                    <Text style={[styles.scanAgainButtonTextError, { color: theme.text }]}>
-                        {type === 'no-qr' ? 'Try Again' : 'Scan Again'}
-                    </Text>
-                </TouchableOpacity>
+          {type === 'invalid-upi' && rawUrl && (
+            <View
+              style={[
+                styles.contentBox,
+                { backgroundColor: theme.iconBg, borderColor: theme.border },
+              ]}
+            >
+              <Text
+                style={[styles.contentLabel, { color: theme.textSecondary }]}
+              >
+                Scanned Content:
+              </Text>
+              <Text style={[styles.contentValue, { color: theme.text }]}>
+                {rawUrl}
+              </Text>
             </View>
-        </>
-    );
+          )}
+        </View>
+      </ScrollView>
+
+      <View
+        style={[
+          styles.errorActionButtons,
+          { backgroundColor: theme.background },
+        ]}
+      >
+        {type === 'invalid-upi' && rawUrl && (
+          <TouchableOpacity style={styles.copyButton} onPress={handleCopy}>
+            <Copy size={20} color="#fff" />
+            <Text style={styles.copyButtonText}>
+              {copied ? 'Copied!' : 'Copy'}
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        <TouchableOpacity
+          style={[
+            styles.scanAgainButtonError,
+            { backgroundColor: theme.card, borderColor: theme.border },
+          ]}
+          onPress={onScanAgain}
+        >
+          <RefreshCw size={20} color={theme.text} />
+          <Text
+            style={[styles.scanAgainButtonTextError, { color: theme.text }]}
+          >
+            {type === 'no-qr' ? 'Try Again' : 'Scan Again'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </>
+  );
 };

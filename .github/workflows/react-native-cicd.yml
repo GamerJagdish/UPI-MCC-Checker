@@ -7,7 +7,7 @@ on:
     inputs:
       buildType:
         type: choice
-        description: "Build type to run"
+        description: 'Build type to run'
         options:
           - prod-apk
           - all
@@ -47,7 +47,7 @@ jobs:
       - name: 🏗 Setup Node.js & Yarn Cache
         uses: actions/setup-node@v7
         with:
-          cache: "yarn"
+          cache: 'yarn'
 
       - name: ⚡ Setup C/C++ Cache (ccache)
         uses: hendrikmuhs/ccache-action@v1.2.24
@@ -192,8 +192,8 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           draft: true
-          name: "v${{ steps.build-info.outputs.version }}"
-          tag_name: "v${{ steps.build-info.outputs.version }}-${{ steps.build-info.outputs.build_number }}"
+          name: 'v${{ steps.build-info.outputs.version }}'
+          tag_name: 'v${{ steps.build-info.outputs.version }}-${{ steps.build-info.outputs.build_number }}'
           files: |
             ./*.apk
           body_path: changelog.md

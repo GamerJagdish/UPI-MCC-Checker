@@ -5,48 +5,51 @@ import { ThemeMode, ThemeColors } from '../types';
 import { Colors } from '../constants/colors';
 
 export const useTheme = () => {
-    const systemColorScheme = useColorScheme();
-    const [themeMode, setThemeMode] = useState<ThemeMode>('system');
+  const systemColorScheme = useColorScheme();
+  const [themeMode, setThemeMode] = useState<ThemeMode>('system');
 
-    const isDark = themeMode === 'system' ? systemColorScheme === 'dark' : themeMode === 'dark';
-    const theme: ThemeColors = Colors[isDark ? 'dark' : 'light'];
+  const isDark =
+    themeMode === 'system'
+      ? systemColorScheme === 'dark'
+      : themeMode === 'dark';
+  const theme: ThemeColors = Colors[isDark ? 'dark' : 'light'];
 
-    useEffect(() => {
-        loadThemePreference();
-    }, []);
+  useEffect(() => {
+    loadThemePreference();
+  }, []);
 
-    useEffect(() => {
-        if (Platform.OS === 'web' && typeof document !== 'undefined') {
-            document.documentElement.style.backgroundColor = theme.background;
-            document.body.style.backgroundColor = theme.background;
-        }
-    }, [theme.background]);
+  useEffect(() => {
+    if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      document.documentElement.style.backgroundColor = theme.background;
+      document.body.style.backgroundColor = theme.background;
+    }
+  }, [theme.background]);
 
-    const loadThemePreference = async () => {
-        try {
-            const savedTheme = await AsyncStorage.getItem('themeMode');
-            if (savedTheme === 'light' || savedTheme === 'dark') {
-                setThemeMode(savedTheme);
-            }
-        } catch (error) {
-            console.error('Error loading theme preference:', error);
-        }
-    };
+  const loadThemePreference = async () => {
+    try {
+      const savedTheme = await AsyncStorage.getItem('themeMode');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        setThemeMode(savedTheme);
+      }
+    } catch (error) {
+      console.error('Error loading theme preference:', error);
+    }
+  };
 
-    const toggleTheme = async (value: boolean) => {
-        try {
-            const newMode = value ? 'dark' : 'light';
-            setThemeMode(newMode);
-            await AsyncStorage.setItem('themeMode', newMode);
-        } catch (error) {
-            console.error('Error saving theme preference:', error);
-        }
-    };
+  const toggleTheme = async (value: boolean) => {
+    try {
+      const newMode = value ? 'dark' : 'light';
+      setThemeMode(newMode);
+      await AsyncStorage.setItem('themeMode', newMode);
+    } catch (error) {
+      console.error('Error saving theme preference:', error);
+    }
+  };
 
-    return {
-        themeMode,
-        isDark,
-        theme,
-        toggleTheme,
-    };
+  return {
+    themeMode,
+    isDark,
+    theme,
+    toggleTheme,
+  };
 };

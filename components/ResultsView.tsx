@@ -8,113 +8,173 @@ import { styles } from '../constants/styles';
 import { getMCCDescription } from '../utils/mccHelper';
 
 interface ResultsViewProps {
-    upiData: UPIParams;
-    theme: ThemeColors;
-    onScanAgain: () => void;
-    onPayment: () => void;
-    onSettingsPress: () => void;
+  upiData: UPIParams;
+  theme: ThemeColors;
+  onScanAgain: () => void;
+  onPayment: () => void;
+  onSettingsPress: () => void;
 }
 
 export const ResultsView: React.FC<ResultsViewProps> = ({
-    upiData,
-    theme,
-    onScanAgain,
-    onPayment,
-    onSettingsPress,
+  upiData,
+  theme,
+  onScanAgain,
+  onPayment,
+  onSettingsPress,
 }) => {
-    return (
-        <>
-            <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
-                <LinearGradient
-                    colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
-                    style={styles.header}>
-                    <Text style={styles.headerTitle}>UPI MCC Checker</Text>
-                    <Text style={styles.headerSubtitle}>Payment Details</Text>
-                    <TouchableOpacity
-                        style={styles.settingsButton}
-                        onPress={onSettingsPress}>
-                        <Settings size={28} color="#fff" />
-                    </TouchableOpacity>
-                </LinearGradient>
-            </BlurView>
+  return (
+    <>
+      <BlurView intensity={80} tint="dark" style={styles.headerBlurContainer}>
+        <LinearGradient
+          colors={['rgba(0, 0, 0, 0.9)', 'rgba(39, 39, 42, 0.8)']}
+          style={styles.header}
+        >
+          <Text style={styles.headerTitle}>UPI MCC Checker</Text>
+          <Text style={styles.headerSubtitle}>Payment Details</Text>
+          <TouchableOpacity
+            style={styles.settingsButton}
+            onPress={onSettingsPress}
+          >
+            <Settings size={28} color="#fff" />
+          </TouchableOpacity>
+        </LinearGradient>
+      </BlurView>
 
-            <ScrollView
-                style={[styles.resultsContainer, { backgroundColor: theme.background }]}
-                contentContainerStyle={{ paddingBottom: 20 }}>
-                <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
-                    {upiData.pn && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Name</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pn}</Text>
-                        </View>
-                    )}
-
-                    {upiData.pa && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant VPA</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.pa}</Text>
-                        </View>
-                    )}
-
-                    {upiData.mc && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Merchant Code (MCC)</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{getMCCDescription(upiData.mc)}</Text>
-                        </View>
-                    )}
-
-                    {upiData.am && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Amount</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>
-                                {upiData.cu || 'INR'} {upiData.am}
-                            </Text>
-                        </View>
-                    )}
-
-                    {upiData.tr && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Ref ID</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tr}</Text>
-                        </View>
-                    )}
-
-                    {upiData.tn && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Transaction Note</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.tn}</Text>
-                        </View>
-                    )}
-
-                    {upiData.orgid && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Organization ID</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.orgid}</Text>
-                        </View>
-                    )}
-
-                    {upiData.ver && (
-                        <View style={[styles.paramRow, { borderBottomColor: theme.border }]}>
-                            <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>Version</Text>
-                            <Text style={[styles.paramValue, { color: theme.text }]}>{upiData.ver}</Text>
-                        </View>
-                    )}
-                </View>
-            </ScrollView>
-
-            <View style={[styles.actionButtons, { backgroundColor: theme.background }]}>
-                <TouchableOpacity
-                    style={[styles.scanAgainButton, { backgroundColor: theme.card, borderColor: theme.border }]}
-                    onPress={onScanAgain}>
-                    <RefreshCw size={20} color={theme.text} />
-                    <Text style={[styles.scanAgainButtonText, { color: theme.text }]}>Scan Again</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={[styles.goButton, { backgroundColor: '#10b981' }]} onPress={onPayment}>
-                    <Text style={[styles.goButtonText, { color: '#ffffff' }]}>Go</Text>
-                    <ArrowRight size={20} color="#ffffff" />
-                </TouchableOpacity>
+      <ScrollView
+        style={[styles.resultsContainer, { backgroundColor: theme.background }]}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
+        <View style={[styles.resultCard, { backgroundColor: theme.card }]}>
+          {upiData.pn && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Merchant Name
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.pn}
+              </Text>
             </View>
-        </>
-    );
+          )}
+
+          {upiData.pa && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Merchant VPA
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.pa}
+              </Text>
+            </View>
+          )}
+
+          {upiData.mc && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Merchant Code (MCC)
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {getMCCDescription(upiData.mc)}
+              </Text>
+            </View>
+          )}
+
+          {upiData.am && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Amount
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.cu || 'INR'} {upiData.am}
+              </Text>
+            </View>
+          )}
+
+          {upiData.tr && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Transaction Ref ID
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.tr}
+              </Text>
+            </View>
+          )}
+
+          {upiData.tn && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Transaction Note
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.tn}
+              </Text>
+            </View>
+          )}
+
+          {upiData.orgid && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Organization ID
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.orgid}
+              </Text>
+            </View>
+          )}
+
+          {upiData.ver && (
+            <View
+              style={[styles.paramRow, { borderBottomColor: theme.border }]}
+            >
+              <Text style={[styles.paramLabel, { color: theme.textSecondary }]}>
+                Version
+              </Text>
+              <Text style={[styles.paramValue, { color: theme.text }]}>
+                {upiData.ver}
+              </Text>
+            </View>
+          )}
+        </View>
+      </ScrollView>
+
+      <View
+        style={[styles.actionButtons, { backgroundColor: theme.background }]}
+      >
+        <TouchableOpacity
+          style={[
+            styles.scanAgainButton,
+            { backgroundColor: theme.card, borderColor: theme.border },
+          ]}
+          onPress={onScanAgain}
+        >
+          <RefreshCw size={20} color={theme.text} />
+          <Text style={[styles.scanAgainButtonText, { color: theme.text }]}>
+            Scan Again
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.goButton, { backgroundColor: '#10b981' }]}
+          onPress={onPayment}
+        >
+          <Text style={[styles.goButtonText, { color: '#ffffff' }]}>Go</Text>
+          <ArrowRight size={20} color="#ffffff" />
+        </TouchableOpacity>
+      </View>
+    </>
+  );
 };

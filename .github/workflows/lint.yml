@@ -1,0 +1,37 @@
+name: Lint & Typecheck
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  lint-and-typecheck:
+    name: 🔍 Lint & Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Checkout repository
+        uses: actions/checkout@v7
+
+      - name: 🏗 Enable Corepack
+        run: corepack enable
+
+      - name: 🏗 Setup Node.js & Yarn Cache
+        uses: actions/setup-node@v7
+        with:
+          cache: 'yarn'
+
+      - name: 📦 Install dependencies
+        run: |
+          rm -f package-lock.json
+          yarn install --immutable
+
+      - name: 🧹 Lint (Expo ESLint)
+        run: yarn lint
+
+      - name: 🏷️ Typecheck (TypeScript)
+        run: yarn typecheck

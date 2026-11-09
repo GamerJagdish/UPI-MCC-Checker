@@ -155,16 +155,6 @@ export default function Home() {
     );
   }
 
-  // Permission not granted
-  if (!permission.granted) {
-    return (
-      <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <StatusBar style="light" />
-        <PermissionView onRequestPermission={requestPermission} />
-      </View>
-    );
-  }
-
   // Results view (successful scan)
   if (scanned && upiData) {
     return (
@@ -297,6 +287,19 @@ export default function Home() {
           hapticsEnabled={hapticsEnabled}
           onToggleHaptics={toggleHaptics}
           onCameraSelect={handleCameraSelectionWrapper}
+        />
+      </View>
+    );
+  }
+
+  // Permission not granted
+  if (!permission.granted) {
+    return (
+      <View style={[styles.container, { backgroundColor: theme.background }]}>
+        <StatusBar style="light" />
+        <PermissionView
+          onRequestPermission={requestPermission}
+          onSelectPhoto={handleSelectPhoto}
         />
       </View>
     );

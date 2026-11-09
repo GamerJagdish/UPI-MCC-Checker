@@ -1,15 +1,21 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Camera as CameraIcon, ExternalLink } from 'lucide-react-native';
+import {
+  Camera as CameraIcon,
+  ExternalLink,
+  Image as ImageIcon,
+} from 'lucide-react-native';
 import { styles } from '../constants/styles';
 
 interface PermissionViewProps {
   onRequestPermission: () => void;
+  onSelectPhoto: () => void;
 }
 
 export const PermissionView: React.FC<PermissionViewProps> = ({
   onRequestPermission,
+  onSelectPhoto,
 }) => {
   const handleLearnMore = () => {
     Linking.openURL(
@@ -32,12 +38,24 @@ export const PermissionView: React.FC<PermissionViewProps> = ({
         device.
       </Text>
 
-      <View style={{ gap: 12, alignItems: 'center' }}>
+      <View
+        style={{ gap: 12, alignItems: 'center', width: '100%', maxWidth: 280 }}
+      >
         <TouchableOpacity
           style={styles.permissionButton}
           onPress={onRequestPermission}
+          activeOpacity={0.8}
         >
           <Text style={styles.permissionButtonText}>Grant Permission</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.permissionSecondaryButton}
+          onPress={onSelectPhoto}
+          activeOpacity={0.8}
+        >
+          <ImageIcon size={20} color="#fff" />
+          <Text style={styles.permissionSecondaryButtonText}>Upload Image</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

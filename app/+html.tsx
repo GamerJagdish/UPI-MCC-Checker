@@ -22,6 +22,61 @@ export default function Root({ children }: PropsWithChildren) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, interactive-widget=resizes-content"
         />
 
+        {/* Primary Meta Tags */}
+        <title>
+          UPI MCC Checker - Scan &amp; Check UPI Merchant Category Codes
+        </title>
+        <meta
+          name="title"
+          content="UPI MCC Checker - Scan & Check UPI Merchant Category Codes"
+        />
+        <meta
+          name="description"
+          content="Scan UPI QR codes to find Merchant Category Codes (MCC) and merchant details. Know whether to pay via credit card or bank account before completing transactions."
+        />
+        <meta
+          name="keywords"
+          content="UPI, MCC, Merchant Category Code, UPI QR Code, QR Scanner, Credit Card Rewards, Surcharge, Payments, UPI Scanner"
+        />
+        <meta name="author" content="Jagdish Sharma (GamerJagdish)" />
+        <link rel="canonical" href="https://upimcc.gamerjagdish.com/" />
+        <meta name="theme-color" content="#38b6ff" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://upimcc.gamerjagdish.com/" />
+        <meta
+          property="og:title"
+          content="UPI MCC Checker - Scan & Check UPI Merchant Category Codes"
+        />
+        <meta
+          property="og:description"
+          content="Scan UPI QR codes to find Merchant Category Codes (MCC) and merchant details. Know whether to pay via credit card or bank account before completing transactions."
+        />
+        <meta
+          property="og:image"
+          content="https://upimcc.gamerjagdish.com/og-image.png"
+        />
+        <meta property="og:image:alt" content="UPI MCC Checker" />
+        <meta property="og:site_name" content="UPI MCC Checker" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://upimcc.gamerjagdish.com/" />
+        <meta
+          name="twitter:title"
+          content="UPI MCC Checker - Scan & Check UPI Merchant Category Codes"
+        />
+        <meta
+          name="twitter:description"
+          content="Scan UPI QR codes to find Merchant Category Codes (MCC) and merchant details. Know whether to pay via credit card or bank account before completing transactions."
+        />
+        <meta
+          name="twitter:image"
+          content="https://upimcc.gamerjagdish.com/og-image.png"
+        />
+        <meta name="twitter:image:alt" content="UPI MCC Checker" />
+
         {/* Link the PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
 
